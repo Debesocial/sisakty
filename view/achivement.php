@@ -47,7 +47,7 @@ $year = date('Y');
             <center><img src="../assets/img/achive1.jpg" width="300"></center>
             <div class="content_text pb-0">
                 <h2 class="size-25 weight-700 color-secondary mb-2">Achivement</h2>
-                <p>Pencapaian Hazard Report tahun <?= date('Y');?></p><br>
+                <p>Pencapaian Harmonis Report tahun <?= date('Y');?></p><br>
                 <table class="table table-striped">
                   <thead>
                     <tr>

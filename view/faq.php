@@ -113,7 +113,7 @@ data-parent="#accordionExample5">
         <div class="group">
             <div>
                 <span class="path__name text-transform-none" style="font-size: 15px;">
-                  Bagaimana jika saat mengisi laporan hazard <br>koneksi internet terputus?
+                  Bagaimana jika saat mengisi Harmonis <br>koneksi internet terputus?
               </span>
           </div>
       </div>
@@ -127,7 +127,7 @@ data-parent="#accordionExample5">
 data-parent="#accordionExample5">
 <div class="card-body">
     <p class="mb-0 size-15 color-text">
-        Jika saat mengisi laporan hazard koneksi internet terputus anda dapat melakukan login ulang dan mengisi ulang laporan hazard saat koneksi stabil.
+        Jika saat mengisi Harmonis koneksi internet terputus anda dapat melakukan login ulang dan mengisi ulang Harmonis saat koneksi stabil.
     </p>
 </div>
 </div>

@@ -58,7 +58,7 @@
             <div class="icon bg-green bg-opacity-10">
                 <img src="../assets/icon/outline/warnings.svg" width="25">
             </div>
-            <span>Hazard</span>
+            <span>Harmonis</span>
         </a>
         <a onclick="commingsoon()" class="btn" >
             <div class="icon bg-blue bg-opacity-10">
@@ -73,19 +73,19 @@
             <span>SIMPER</span>
         </a>
         <?php if($_login == 'Y'){?>
-        <a href="home.php?v=achivement" class="btn">
-            <div class="icon bg-yellow bg-opacity-10">
-                <img src="../assets/icon/outline/trophy.svg" width="25">
-            </div>
-            <span>Achive</span>
-        </a>
+            <a href="home.php?v=achivement" class="btn">
+                <div class="icon bg-yellow bg-opacity-10">
+                    <img src="../assets/icon/outline/trophy.svg" width="25">
+                </div>
+                <span>Achive</span>
+            </a>
         <?php } else { ?>
-        <a href="../controller/logout.php" class="btn">
-            <div class="icon bg-yellow bg-opacity-10">
-                <img src="../assets/icon/outline/trophy.svg" width="25">
-            </div>
-            <span>Achive</span>
-        </a>
+            <a href="../controller/logout.php" class="btn">
+                <div class="icon bg-yellow bg-opacity-10">
+                    <img src="../assets/icon/outline/trophy.svg" width="25">
+                </div>
+                <span>Achive</span>
+            </a>
         <?php } ?>
         <a href="#" data-toggle="modal" data-target="#menu" class="btn" >
             <div class="icon bg-white bg-opacity-10">
@@ -112,9 +112,9 @@
             <div class="item em_item">
             <div class="em_cover_img">';
             if ($row['iupdate_img'] != '') {
-            echo'<img src="../assets/iupdate/'.$row['iupdate_img'].'" alt="">';
+                echo'<img src="../assets/iupdate/'.$row['iupdate_img'].'" alt="">';
             } else {
-            echo'<img src="../assets/img/banner.png" alt="">';
+                echo'<img src="../assets/img/banner.png" alt="">';
             }
             echo'<div class="em_text">
             <div class="margin-b-10">
@@ -149,7 +149,7 @@
         <div class="row mb-0" style="border: 0">
         <div class="col bg-snow padding-10 border">
         <div class="group">
-        <center>#HazardReport | PIC :  '.$_divisi.'</center>
+        <center>#Harmonis | PIC :  '.$_divisi.'</center>
         </div>
         </div>
         </div>
@@ -177,7 +177,7 @@
     }?>
 
     <div class="title d-flex justify-content-between align-items-center padding-b-30">
-        <h3 class="size-18 weight-500 color-secondary m-0">Hazard Report</h3>
+        <h3 class="size-18 weight-500 color-secondary m-0">Harmonis</h3>
         <a href="home.php?v=hazard"
         class="d-block color-blue size-14 m-0 hover:color-blue">View all</a>
     </div>
@@ -213,58 +213,58 @@
             if ($row['hazard_status'] == 'Open'){
                 echo'<span class="badge badge-pill badge-warning" style="color: #ffffff;font-weight: 10;">Open</span> ';
             } elseif ($row['hazard_status'] == 'Progress'){
-               echo'<span class="badge badge-pill badge-primary" style="color: #ffffff;font-weight: 10;">Progress</span> ';
-           } elseif ($row['hazard_status'] == 'Closed'){
-               echo'<span class="badge badge-pill badge-success" style="color: #ffffff;font-weight: 10;">Closed</span> ';
-           } elseif ($row['hazard_status'] == 'Reject'){
-               echo'<span class="badge badge-pill badge-danger" style="color: #ffffff;font-weight: 10;">Rejected</span> ';
-           }
-           echo'
-           <span style="overflow: hidden;
-           white-space: nowrap;
-           text-overflow: ellipsis;
-           margin: 0;">&nbsp;|&nbsp;'.$row['loc_name'].'</span>
-           <span style="overflow: hidden;
-           white-space: nowrap;
-           text-overflow: ellipsis;
-           margin: 0;">'.$row['hazard_date'].'</span>
-           </div>
-           <h6 class="card-title size-18 weight-600 mb-0" 
-           style="overflow: hidden;
-           white-space: nowrap;
-           text-overflow: ellipsis;
-           margin: 0;">
-           '.$row['hazard_name'].'
-           </h6>
-           <p class="card-text size-15">
-           '.$row['hazard_desc'].'
-           </p>
-           </div>
-           </a>
-           </div>
-           ';
-       }?>
-   </div>
+             echo'<span class="badge badge-pill badge-primary" style="color: #ffffff;font-weight: 10;">Progress</span> ';
+         } elseif ($row['hazard_status'] == 'Closed'){
+             echo'<span class="badge badge-pill badge-success" style="color: #ffffff;font-weight: 10;">Closed</span> ';
+         } elseif ($row['hazard_status'] == 'Reject'){
+             echo'<span class="badge badge-pill badge-danger" style="color: #ffffff;font-weight: 10;">Rejected</span> ';
+         }
+         echo'
+         <span style="overflow: hidden;
+         white-space: nowrap;
+         text-overflow: ellipsis;
+         margin: 0;">&nbsp;|&nbsp;'.$row['loc_name'].'</span>
+         <span style="overflow: hidden;
+         white-space: nowrap;
+         text-overflow: ellipsis;
+         margin: 0;">'.$row['hazard_date'].'</span>
+         </div>
+         <h6 class="card-title size-18 weight-600 mb-0" 
+         style="overflow: hidden;
+         white-space: nowrap;
+         text-overflow: ellipsis;
+         margin: 0;">
+         '.$row['hazard_name'].'
+         </h6>
+         <p class="card-text size-15">
+         '.$row['hazard_desc'].'
+         </p>
+         </div>
+         </a>
+         </div>
+         ';
+     }?>
+ </div>
 </div>
 
 <!-- Start em_main_footer -->
 <footer class="em_main_footer with__text rounded p-0">
-   <div class="em_body_navigation -active-links">
-        <div class="item_link">
-            <a href="home.php?v=dashboard" class="btn btn_navLink">
+ <div class="em_body_navigation -active-links">
+    <div class="item_link">
+        <a href="home.php?v=dashboard" class="btn btn_navLink">
             <div class="icon_active">
                 <img src="../assets/icon/outline/homes.svg" >
             </div>
             <div class="txt__tile">Home</div>
-            </a>
-        </div>
-        <?php if($_login == 'Y'){?>
+        </a>
+    </div>
+    <?php if($_login == 'Y'){?>
         <div class="item_link">
             <a href="home.php?v=bookmark" class="btn btn_navLink">
-            <div class="icon_current">
-                <img src="../assets/icon/outline/bookmark.svg">
-            </div>
-            <div class="txt__tile">Bookmark</div>
+                <div class="icon_current">
+                    <img src="../assets/icon/outline/bookmark.svg">
+                </div>
+                <div class="txt__tile">Bookmark</div>
             </a>
         </div>
         <div class="item_link" >
@@ -275,63 +275,63 @@
             </a>
         </div>
         <div class="item_link" >
-        <header class="main_haeder" style="font-size: 11px;padding: 0px;">
-            <div class="em_side_right" style="text-align: center;">
-                <a href="home.php?v=notification" class="btn justify-content-center relative">
-                    <img src="../assets/icon/outline/notification.svg">
-                    <?php 
-                    @$notif = mysqli_fetch_array($conn->query("SELECT COUNT(*) AS total FROM hazard_status 
-                        LEFT JOIN hazard ON hazard.hazard_id = hazard_status.hazard_status_hazard
-                        LEFT JOIN user ON user.user_id = hazard.hazard_user
-                        WHERE user.user_nik = '$_nik' 
-                        AND hazard_status.hazard_status_notif = ''"));
-                    if (@$notif['total'] != 0 ) {
-                     echo ' <span class="flashCircle"></span>';
-                 }?>
-             </a>
-            <div class="txt__tile">Notification</div>
-         </div>
-     </header>
-         </div>
-     <div class="item_link">
+            <header class="main_haeder" style="font-size: 11px;padding: 0px;">
+                <div class="em_side_right" style="text-align: center;">
+                    <a href="home.php?v=notification" class="btn justify-content-center relative">
+                        <img src="../assets/icon/outline/notification.svg">
+                        <?php 
+                        @$notif = mysqli_fetch_array($conn->query("SELECT COUNT(*) AS total FROM hazard_status 
+                            LEFT JOIN hazard ON hazard.hazard_id = hazard_status.hazard_status_hazard
+                            LEFT JOIN user ON user.user_id = hazard.hazard_user
+                            WHERE user.user_nik = '$_nik' 
+                            AND hazard_status.hazard_status_notif = ''"));
+                        if (@$notif['total'] != 0 ) {
+                           echo ' <span class="flashCircle"></span>';
+                       }?>
+                   </a>
+                   <div class="txt__tile">Notification</div>
+               </div>
+           </header>
+       </div>
+       <div class="item_link">
         <a href="home.php?v=profil" class="btn btn_navLink">
             <div class="icon_current">
-            <img src="../assets/icon/outline/user.svg" ><span class="flashCircle"></span>
+                <img src="../assets/icon/outline/user.svg" ><span class="flashCircle"></span>
             </div>
             <div class="txt__tile">Profile</div>
         </a>
     </div>
-    <?php } else { ?>
+<?php } else { ?>
     <div class="item_link">
-            <a href="../controller/logout.php" class="btn btn_navLink">
+        <a href="../controller/logout.php" class="btn btn_navLink">
             <div class="icon_current">
                 <img src="../assets/icon/outline/bookmark.svg">
             </div>
             <div class="txt__tile">Bookmark</div>
-            </a>
-        </div>
-        <div class="item_link" >
-            <a href="../controller/logout.php" class="btn btn_navLink"  style="width: 100%;">
-                <button type="button" class="btn btnCircle_default _lg">
-                    <img src="../assets/icon/outline/warnings.svg" style="-webkit-filter: invert(1);filter: invert(1);width: 25px">
-                </button>
-            </a>
-        </div>
-        <div class="item_link" >
-            <a href="../controller/logout.php" class="btn btn_navLink">
+        </a>
+    </div>
+    <div class="item_link" >
+        <a href="../controller/logout.php" class="btn btn_navLink"  style="width: 100%;">
+            <button type="button" class="btn btnCircle_default _lg">
+                <img src="../assets/icon/outline/warnings.svg" style="-webkit-filter: invert(1);filter: invert(1);width: 25px">
+            </button>
+        </a>
+    </div>
+    <div class="item_link" >
+        <a href="../controller/logout.php" class="btn btn_navLink">
             <div class="icon_current">
                 <img src="../assets/icon/outline/notification.svg">
             </div>
             <div class="txt__tile">Notification</div>
-            </a>
-         </div>
-     <div class="item_link">
+        </a>
+    </div>
+    <div class="item_link">
         <a href="../controller/logout.php" class="btn btn_navLink">
             <div class="icon_current">
-            <img src="../assets/icon/outline/user.svg" ><span class="flashCircle"></span>
+                <img src="../assets/icon/outline/user.svg" ><span class="flashCircle"></span>
             </div>
             <div class="txt__tile">Profile</div>
         </a>
     </div>
-    <?php } ?>
+<?php } ?>
 </footer>

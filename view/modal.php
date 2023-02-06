@@ -140,7 +140,7 @@
 						<a class="nav-link" href="home.php?v=hazard">
 							<div class="icon_current">
 								<img src="../assets/icon/outline/warnings.svg" width="23" style="opacity: 0.5;">
-								<span class="title_link">Hazard Report</span>
+								<span class="title_link">Harmonis</span>
 							</div>
 
 						</a>

@@ -6,8 +6,8 @@ include '../../controller/connection.php';
 if($_GET['action'] == 'login') {
 
 // menangkap data yang dikirim dari form login
-	$user 	  = $_POST['user'];
-	$password = base64_encode($_POST['password']);
+	$user 	  = addslashes($_POST['user']);
+	$password = addslashes(base64_encode($_POST['password']));
 
 	if($_POST['loginas'] == 'Administrator'){
 		$login = mysqli_query($conn,"SELECT * FROM user 

@@ -40,16 +40,16 @@
         </div>
         <div class="txt">
             <h2>Open</h2>
-    <?php $status=mysqli_fetch_array($conn->query("
-    SELECT COUNT(*) AS total FROM hazard 
-    where hazard_approve = 'Y' 
-    and hazard_status    = 'Open'
-    and hazard_user      = '$_id'")); 
-    if ($status['total'] > 100) {
-    echo"<p>> 100 Laporan</p>";
-    } else {
-    echo"<p>".$status['total']." Laporan</p>";
-    }?>
+            <?php $status=mysqli_fetch_array($conn->query("
+                SELECT COUNT(*) AS total FROM hazard 
+                where hazard_approve = 'Y' 
+                and hazard_status    = 'Open'
+                and hazard_user      = '$_id'")); 
+            if ($status['total'] > 100) {
+                echo"<p>> 100 Laporan</p>";
+            } else {
+                echo"<p>".$status['total']." Laporan</p>";
+            }?>
         </div>
     </a>
     <a href="home.php?v=hazard-user&status=progress" class="emCategorie_itemJobs _list bg-blue">
@@ -74,16 +74,16 @@
     </div>
     <div class="txt">
         <h2>Progress</h2>
-    <?php $status=mysqli_fetch_array($conn->query("
-    SELECT COUNT(*) AS total FROM hazard 
-    where hazard_approve = 'Y' 
-    and hazard_status    = 'Progress'
-    and hazard_user      = '$_id'")); 
-    if ($status['total'] > 100) {
-    echo"<p>> 100 Laporan</p>";
-    } else {
-    echo"<p>".$status['total']." Laporan</p>";
-    }?>
+        <?php $status=mysqli_fetch_array($conn->query("
+            SELECT COUNT(*) AS total FROM hazard 
+            where hazard_approve = 'Y' 
+            and hazard_status    = 'Progress'
+            and hazard_user      = '$_id'")); 
+        if ($status['total'] > 100) {
+            echo"<p>> 100 Laporan</p>";
+        } else {
+            echo"<p>".$status['total']." Laporan</p>";
+        }?>
     </div>
 </a>
 <a href="home.php?v=hazard-user&status=closed" class="emCategorie_itemJobs _list bg-green">
@@ -109,14 +109,14 @@
 <div class="txt">
     <h2>Closed</h2>
     <?php $status=mysqli_fetch_array($conn->query("
-    SELECT COUNT(*) AS total FROM hazard 
-    where hazard_approve = 'Y' 
-    and hazard_status    = 'Closed'
-    and hazard_user      = '$_id'")); 
+        SELECT COUNT(*) AS total FROM hazard 
+        where hazard_approve = 'Y' 
+        and hazard_status    = 'Closed'
+        and hazard_user      = '$_id'")); 
     if ($status['total'] > 100) {
-    echo"<p>> 100 Laporan</p>";
+        echo"<p>> 100 Laporan</p>";
     } else {
-    echo"<p>".$status['total']." Laporan</p>";
+        echo"<p>".$status['total']." Laporan</p>";
     }?>
 </div>
 </a>
@@ -143,14 +143,14 @@
 <div class="txt">
     <h2>Rejected</h2>
     <?php $status=mysqli_fetch_array($conn->query("
-    SELECT COUNT(*) AS total FROM hazard 
-    where hazard_approve = 'Y' 
-    and hazard_status    = 'Reject'
-    and hazard_user      = '$_id'")); 
+        SELECT COUNT(*) AS total FROM hazard 
+        where hazard_approve = 'Y' 
+        and hazard_status    = 'Reject'
+        and hazard_user      = '$_id'")); 
     if ($status['total'] > 100) {
-    echo"<p>> 100 Laporan</p>";
+        echo"<p>> 100 Laporan</p>";
     } else {
-    echo"<p>".$status['total']." Laporan</p>";
+        echo"<p>".$status['total']." Laporan</p>";
     }?>
 </div>
 </a>
@@ -161,7 +161,7 @@
 <div class="emCoureses__grid course__list bg-white"><br><br><br>
     <div class="border-text margin-b-30">
         <div class="lined">
-            <span class="text">Hazard Report</span>
+            <span class="text">Harmonis</span>
         </div>
     </div>
 
@@ -189,7 +189,7 @@
                 </svg>
             </div>
             <div class="side_voice">
-             <button type="button" class="btn ml-1" data-toggle="modal" data-target="#mdllFilter">
+               <button type="button" class="btn ml-1" data-toggle="modal" data-target="#mdllFilter">
                 <svg id="Iconly_Two-tone_Filter" data-name="Iconly/Two-tone/Filter"
                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <g id="Filter" transform="translate(2 2.5)">
@@ -281,7 +281,7 @@
             } 
 
         } else {
-         if(@$_GET['status'] == 'all') {
+           if(@$_GET['status'] == 'all') {
             $sql = mysqli_query($conn,"SELECT * FROM hazard  
                 LEFT JOIN user ON user.user_id = hazard.hazard_user
                 LEFT JOIN location ON location.loc_id = hazard.hazard_loc 
@@ -345,36 +345,36 @@
         if ($row['hazard_status'] == 'Open'){
             echo'<span class="badge badge-pill badge-warning" style="color: #ffffff;font-weight: 10;">Open</span> ';
         } elseif ($row['hazard_status'] == 'Progress'){
-         echo'<span class="badge badge-pill badge-primary" style="color: #ffffff;font-weight: 10;">Progress</span> ';
-     } elseif ($row['hazard_status'] == 'Closed'){
-         echo'<span class="badge badge-pill badge-success" style="color: #ffffff;font-weight: 10;">Closed</span> ';
-     } elseif ($row['hazard_status'] == 'Reject'){
-         echo'<span class="badge badge-pill badge-danger" style="color: #ffffff;font-weight: 10;">Rejected</span> ';
-     }
-     echo'
-     <span style="overflow: hidden;
-           white-space: nowrap;
-           text-overflow: ellipsis;
-           margin: 0;">&nbsp;|&nbsp;'.$row['loc_name'].'</span>
-     <span style="overflow: hidden;
-           white-space: nowrap;
-           text-overflow: ellipsis;
-           margin: 0;">'.$row['hazard_date'].'</span>
-     </div>
-     <h6 class="card-title size-18 weight-600 mb-0" 
-     style="overflow: hidden;
-     white-space: nowrap;
-     text-overflow: ellipsis;
-     margin: 0;">
-     '.$row['hazard_name'].'
-     </h6>
-     <p class="card-text size-15">
-     '.$row['hazard_desc'].'
-     </p>
-     </div>
-     </a>
-     </div>
-     ';
- }?>
+           echo'<span class="badge badge-pill badge-primary" style="color: #ffffff;font-weight: 10;">Progress</span> ';
+       } elseif ($row['hazard_status'] == 'Closed'){
+           echo'<span class="badge badge-pill badge-success" style="color: #ffffff;font-weight: 10;">Closed</span> ';
+       } elseif ($row['hazard_status'] == 'Reject'){
+           echo'<span class="badge badge-pill badge-danger" style="color: #ffffff;font-weight: 10;">Rejected</span> ';
+       }
+       echo'
+       <span style="overflow: hidden;
+       white-space: nowrap;
+       text-overflow: ellipsis;
+       margin: 0;">&nbsp;|&nbsp;'.$row['loc_name'].'</span>
+       <span style="overflow: hidden;
+       white-space: nowrap;
+       text-overflow: ellipsis;
+       margin: 0;">'.$row['hazard_date'].'</span>
+       </div>
+       <h6 class="card-title size-18 weight-600 mb-0" 
+       style="overflow: hidden;
+       white-space: nowrap;
+       text-overflow: ellipsis;
+       margin: 0;">
+       '.$row['hazard_name'].'
+       </h6>
+       <p class="card-text size-15">
+       '.$row['hazard_desc'].'
+       </p>
+       </div>
+       </a>
+       </div>
+       ';
+   }?>
 </div>
 </div>

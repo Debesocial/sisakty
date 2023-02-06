@@ -102,7 +102,7 @@ if (!isset($_login)) {
       </thead>
       <tbody>
         <tr>
-          <th scope="row">ID Hazard</th>
+          <th scope="row">ID Harmonis</th>
           <td><?= 'HZ'.str_pad($detail['hazard_id'],5,"0",STR_PAD_LEFT);?></td>
         </tr>
         <tr>

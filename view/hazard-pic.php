@@ -172,7 +172,7 @@ if (!isset($_login)) {
 <div class="emCoureses__grid course__list bg-white"><br><br><br>
     <div class="border-text margin-b-30">
         <div class="lined">
-            <span class="text">Hazard Report</span>
+            <span class="text">Harmonis</span>
         </div>
     </div>
 

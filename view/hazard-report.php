@@ -7,7 +7,7 @@
 	</div>
 	<div class="title_page">
 		<h1 class="page_name">
-			Hazard Report
+			Harmonis
 		</h1>
 	</div>
 	<div class="em_side_right">
@@ -149,7 +149,7 @@
     						</div>
     						<div class="media-body">
     							<div class="txt">
-    								<h2>Hazard Report</h2>
+    								<h2>Harmonis</h2>
     								<p>Pastikan laporan anda sudah sesuai dan dapat dipertanggungjawabkan, Yakin ingin melanjutkan laporan ?</p>
     							</div>
     						</div>
@@ -257,7 +257,7 @@
 							Swal.fire({
 								title: 'Berhasil!',
 								icon:  'success',
-								text:  'Laporan anda berhasil dibuat, buka hazard report untuk melihat progress laporan anda',
+								text:  'Laporan anda berhasil dibuat, buka Harmonis untuk melihat progress laporan anda',
 								focusConfirm: false,
 								confirmButtonText:
 								'<i class="fa fa-thumbs-up"></i> Oke'

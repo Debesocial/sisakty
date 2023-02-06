@@ -7,7 +7,7 @@
    	</div>
    	<div class="title_page">
    		<h1 class="page_name">
-   			Hazard Report
+   			Harmonis
    		</h1>
    	</div>
    	<div class="em_side_right">
@@ -40,7 +40,7 @@
    		</div>
    		<div class="txt">
    			<h2>Laporan Saya</h2>
-   			<p>Riwayat hazard report</p>
+   			<p>Riwayat Harmonis</p>
    		</div>
    	</a>
    	<?php if($_pic == 'Y') {?>
@@ -63,7 +63,7 @@
    		</div>
    		<div class="txt">
    			<h2>Halaman PIC</h2>
-   			<p>Halaman untuk mengelola hazard report <br>yang dilaporkan ke Divisi <?= $_divisi?></p>
+   			<p>Halaman untuk mengelola Harmonis <br>yang dilaporkan ke Divisi <?= $_divisi?></p>
    		</div>
    	</a>
    <?php } ?>
@@ -74,7 +74,7 @@
 <div class="emCoureses__grid course__list bg-white"><br><br><br>
 	<div class="border-text margin-b-30">
 		<div class="lined">
-			<span class="text">Hazard Report</span>
+			<span class="text">Harmonis</span>
 		</div>
 	</div>
 

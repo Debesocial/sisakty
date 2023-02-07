@@ -1,8 +1,8 @@
 <?php
-@$user_name    	 	= addslashes($_POST['name']);
-@$user_email    	= addslashes($_POST['email']);
-@$user_nik       	= addslashes(addslashes($_POST['nik']));
-@$user_password     = addslashes(base64_encode($_POST['password']));
+$user_name    	 	= $_POST['name'];
+$user_email    		= $_POST['email'];
+$user_nik       	= $_POST['nik'];
+$user_password     	= base64_encode($_POST['password']);
 if (isset($_POST['submit_password'])){
 	$sql           	= "UPDATE user SET 
 	user_password  	= '$user_password' WHERE 

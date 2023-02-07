@@ -1,15 +1,16 @@
 <?php 
-if (@$_POST['search'] != NULL) {
-  $header = tanggal_indonesia(@$_POST['date1']).' s/d '.tanggal_indonesia(@$_POST['date2']);
+if ($_POST['search'] != NULL) {
+  $header = tanggal_indonesia($_POST['date1']).' s/d '.tanggal_indonesia($_POST['date2']);
   $date2  = $_POST['date1'];
   $date1  = $_POST['date2'];
-}elseif (@$_POST['nonaktif'] != NULL) {
+}elseif ($_POST['nonaktif'] != NULL) {
  $header = 'Data Visitor Nonaktif';
-}elseif (@$_POST['aktif'] != NULL) {
+}elseif ($_POST['aktif'] != NULL) {
  $header = 'Data Visitor Aktif';
 } else {
   $header = 'Data Visitor';
 }
+
 
 if(@$_GET['act'] == 'detail'){
   @$detail = mysqli_fetch_array($conn->query("SELECT * FROM visitor WHERE visitor.visitor_id = ".$_GET['id'].""));?>
@@ -169,6 +170,7 @@ if(@$_GET['act'] == 'detail'){
         <div class="form-group"><br>
           <div class="row">
             <div class="col-md-6 col-lg-6 col-xl-6">
+              <!-- <button type="reset" class="btn btn-sm btn-basic form-control">Reset</button><br><br> -->
             </div>
             <div class="col-md-6 col-lg-6 col-xl-6">
               <button type="submit" id="visitor-add" name="visitor-add" class="btn btn-sm btn-primary form-control"><i class="fas fa-save"></i> Simpan</button><br><br>
@@ -345,21 +347,21 @@ if(@$_GET['act'] == 'detail'){
                  </thead>
                  <tbody>
                   <?php
-                  if(@$_POST['berdasarkan'] == 'pengajuan') {
+                  if($_POST['berdasarkan'] == 'pengajuan') {
                     $data = mysqli_query($conn,"SELECT * FROM visitor 
                       WHERE visitor_date <= '$date1'
                       AND visitor_date >= '$date2'
                       ORDER BY visitor_id DESC");
-                  }elseif(@$_POST['berdasarkan'] == 'berlaku') {
+                  }elseif($_POST['berdasarkan'] == 'berlaku') {
                     $data = mysqli_query($conn,"SELECT * FROM visitor 
                       WHERE visitor_end <= '$date1'
                       AND visitor_end >= '$date2'
                       ORDER BY visitor_id DESC");
-                  }elseif(@$_POST['aktif'] == 'aktif') {
+                  }elseif($_POST['aktif'] == 'aktif') {
                     $data = mysqli_query($conn,"SELECT * FROM visitor 
                       WHERE visitor_status = 'Aktif'
                       ORDER BY visitor_id DESC");
-                  }elseif(@$_POST['nonaktif'] == 'nonaktif') {
+                  }elseif($_POST['nonaktif'] == 'nonaktif') {
                     $data = mysqli_query($conn,"SELECT * FROM visitor 
                       WHERE visitor_status = 'Nonaktif'
                       ORDER BY visitor_id DESC");

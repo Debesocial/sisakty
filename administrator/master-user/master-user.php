@@ -1,5 +1,6 @@
 <?php
 @$id = $_GET['id'];
+
 @$userdetail = mysqli_fetch_array($conn->query("SELECT * FROM user 
 	LEFT JOIN level ON level.level_id = user.user_level 
 	LEFT JOIN departement ON departement.dept_id = user.user_dept 
@@ -7,7 +8,7 @@
 	LEFT JOIN company ON company.comp_id = user.user_comp 
 	WHERE user.user_id = '$id'"));
 
-@$user = mysqli_query($conn,"SELECT * FROM user 
+@$user = mysqli_query($conn, "SELECT * FROM user 
 	LEFT JOIN level ON level.level_id = user.user_level
 	LEFT JOIN departement ON departement.dept_id = user.user_dept
 	LEFT JOIN divisi ON divisi.divisi_id = user.user_divisi

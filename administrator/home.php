@@ -1,12 +1,12 @@
 <?php
 @session_start();
 $timeout = 15;
-$logout  = "index.php"; 
+$logout  = "index.php";
 $timeout = $timeout * 60;
 
-if(isset($_SESSION['start_session'])){
-	$elapsed_time = time()-$_SESSION['start_session'];
-	if($elapsed_time >= $timeout){
+if (isset($_SESSION['start_session'])) {
+	$elapsed_time = time() - $_SESSION['start_session'];
+	if ($elapsed_time >= $timeout) {
 		session_unset();
 		session_destroy();
 		header("location:index.php");
@@ -17,9 +17,10 @@ if(isset($_SESSION['start_session'])){
 		header("location:index.php");
 	}
 }
-$_SESSION['start_session']=time();
-function tanggal_indonesia($tanggal){
-	$bulan = array (
+$_SESSION['start_session'] = time();
+function tanggal_indonesia($tanggal)
+{
+	$bulan = array(
 		1 =>   'Januari',
 		'Februari',
 		'Maret',
@@ -34,13 +35,14 @@ function tanggal_indonesia($tanggal){
 		'Desember'
 	);
 
-	$pecahkan = explode('-', $tanggal);
-	return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+	@$pecahkan = explode('-', $tanggal);
+	return @$pecahkan[2] . ' ' . @$bulan[(int)$pecahkan[1]] . ' ' . @$pecahkan[0];
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
@@ -78,102 +80,66 @@ function tanggal_indonesia($tanggal){
 				<div class="form-inline mr-auto">
 					<ul class="navbar-nav mr-3">
 						<li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg
-							collapse-btn"> <i data-feather="align-justify"></i></a></li>
-							<li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
+							collapse-btn"> <i data-feather="align-justify"></i></a>
+						</li>
+						<li>
+							<a href="#" class="nav-link nav-link-lg fullscreen-btn">
 								<i data-feather="maximize"></i>
-							</a></li>
-						</ul>
-					</div>
-
-					<!-- NOTIFICATION -->
-					<ul class="navbar-nav navbar-right">
-						<li class="dropdown dropdown-list-toggle">
-            <!-- <a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg">
-              <i data-feather="bell" class="bell"></i>
-            </a>
-            <div class="dropdown-menu dropdown-list dropdown-menu-right pullDown">
-              <div class="dropdown-list-content dropdown-list-icons">
-                <a href="#" class="dropdown-item dropdown-item-unread"> 
-                  <span class="dropdown-item-icon bg-primary text-white"> 
-                    <i class="fas fa-code"></i>
-                  </span> 
-                  <span class="dropdown-item-desc"> Example Notification 
-                    <span class="time">2 Min Ago</span>
-                  </span>
-                </a>
-              </div>
-              <div class="dropdown-footer text-center">
-                <a href="#">View All <i class="fas fa-chevron-right"></i></a>
-              </div>
-          </div> -->
-      </li>
-
-      <!-- MANAGEMENT ACCOUNT -->
-      <li class="dropdown">
-      	<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" style="color: #60686f;"> 
-      		<!-- <img alt="image" src="../assets/super/img/user.png" class="user-img-radious-style" style="box-shadow: 1px 2px 2px 0 rgb(0 0 0 / 10%);}">  -->
-      		<u>Hallo Admin </u>&nbsp;<i class="fas fa-user"></i>
-      		<span class="d-sm-none d-lg-inline-block"></span>
-      	</a>
-      	<div class="dropdown-menu dropdown-menu-right pullDown">
-      		<div class="dropdown-title">Hallo KTT</div>
-      		<a class="nav-link count-indicator" id="logout" style="color: #343a40;" onclick="logout()" href="" data-toggle="dropdown">
-      			<i class="fas fa-sign-out-alt"></i> Keluar
-      		</a>
-      	</div>
-      </li>
-  </ul>
-</nav>
-
-<!-- SIDEBAR -->
-<div class="main-sidebar sidebar-style-2">
-	<aside id="sidebar-wrapper">
-		<div class="sidebar-brand">
-			<a href="home.php?v=dashboard">
-				<img src="../assets/img/logor.png" width="50%">
-			</a>
-		</div>
-		<ul class="sidebar-menu">
-			<li class="dropdown">
-				<a href="home.php?v=dashboard" class="nav-link"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
-			</li>
-			<li class="menu-header">Master Data</li>
-			<li class="dropdown">
-				<a href="#" class="menu-toggle nav-link has-dropdown">
-					<i class="fas fa-database"></i><span>Data Karyawan</span></a>
-					<ul class="dropdown-menu">
-						<li><a class="nav-link" href="home.php?v=muser">Data User</a></li>
-						<li><a class="nav-link" href="home.php?v=mlevel&act=add">Data Jabatan</a></li>
-						<li><a class="nav-link" href="home.php?v=mdepartement&act=add">Data Departement</a></li>
-						<li><a class="nav-link" href="home.php?v=mdivisi&act=add">Data Divisi</a></li>
-						<li><a class="nav-link" href="home.php?v=mcompany&act=add">Data Perusahaan</a></li>
+							</a>
+						</li>
 					</ul>
-				</li>
-				<li class="dropdown">
-					<a href="#" class="menu-toggle nav-link has-dropdown">
-						<i class="fas fa-database"></i><span>Data Hazard</span></a>
-						<ul class="dropdown-menu">
-							<!-- <li><a class="nav-link" href="home.php?v=mpic&act=list">Data PIC</a></li> -->
-							<li><a class="nav-link" href="home.php?v=mclassification&act=add">Data Klasifikasi</a></li>
-							<li><a class="nav-link" href="home.php?v=mlocation&act=add">Data Lokasi</a></li>
-							<li><a class="nav-link" href="home.php?v=mrisk&act=add">Data Risiko</a></li>
-							<!-- <li><a class="nav-link" href="home.php?v=mbulletin&act=add">SHE Bulletin</a></li> -->
-						</ul>
+				</div>
+
+				<!-- NOTIFICATION -->
+				<ul class="navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" style="color: #60686f;">
+							<u>Hallo Admin </u>&nbsp;<i class="fas fa-user"></i>
+							<span class="d-sm-none d-lg-inline-block"></span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right pullDown">
+							<div class="dropdown-title">Hallo KTT</div>
+							<a class="nav-link count-indicator" id="logout" style="color: #343a40;" onclick="logout()" href="" data-toggle="dropdown">
+								<i class="fas fa-sign-out-alt"></i> Keluar
+							</a>
+						</div>
 					</li>
-						<!-- <li class="dropdown">
-							<a onclick="myFunction()">
-								<i class="fas fa-database"></i><span>Data SIM Permit</span></a>
+				</ul>
+			</nav>
+
+			<!-- SIDEBAR -->
+			<div class="main-sidebar sidebar-style-2">
+				<aside id="sidebar-wrapper">
+					<div class="sidebar-brand">
+						<a href="home.php?v=dashboard">
+							<img src="../assets/img/logor.png" width="50%">
+						</a>
+					</div>
+					<ul class="sidebar-menu">
+						<li class="dropdown">
+							<a href="home.php?v=dashboard" class="nav-link"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+						</li>
+						<li class="menu-header">Master Data</li>
+						<li class="dropdown">
+							<a href="#" class="menu-toggle nav-link has-dropdown">
+								<i class="fas fa-database"></i><span>Data Karyawan</span></a>
 								<ul class="dropdown-menu">
-									<li><a class="nav-link" href="home.php?v=munit&act=add">Data Unit</a></li>
+									<li><a class="nav-link" href="home.php?v=muser">Data User</a></li>
+									<li><a class="nav-link" href="home.php?v=mlevel&act=add">Data Jabatan</a></li>
+									<li><a class="nav-link" href="home.php?v=mdepartement&act=add">Data Departement</a></li>
+									<li><a class="nav-link" href="home.php?v=mdivisi&act=add">Data Divisi</a></li>
+									<li><a class="nav-link" href="home.php?v=mcompany&act=add">Data Perusahaan</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
-								<a onclick="myFunction()">
-									<i class="fas fa-database"></i><span>Data MINE Permit</span></a>
+								<a href="#" class="menu-toggle nav-link has-dropdown">
+									<i class="fas fa-database"></i><span>Data Harmonis</span></a>
 									<ul class="dropdown-menu">
-										<li><a class="nav-link" href="home.php?v=marea&act=add">Data Area</a></li>
+										<li><a class="nav-link" href="home.php?v=mclassification&act=add">Data Klasifikasi</a></li>
+										<li><a class="nav-link" href="home.php?v=mlocation&act=add">Data Lokasi</a></li>
+										<li><a class="nav-link" href="home.php?v=mrisk&act=add">Data Risiko</a></li>
 									</ul>
-								</li> -->
+								</li>
 								<li class="menu-header">Menu</li>
 								<li class="dropdown">
 									<a href="#" class="menu-toggle nav-link has-dropdown">
@@ -185,15 +151,9 @@ function tanggal_indonesia($tanggal){
 									</li>
 									<li class="dropdown">
 										<a href="home.php?v=hazard">
-											<i class="fas fa-exclamation-triangle"></i><span>Hazard Report</span>
+											<i class="fas fa-exclamation-triangle"></i><span>Harmonis </span>
 										</a>
 									</li>
-								<!-- <li class="dropdown">
-									<a onclick="myFunction()">
-										<a href="home.php?v=spermit&act=add">
-											<i class="fas fa-address-card"></i><span>SIM Permit</span>
-										</a>
-									</li> -->
 									<li class="dropdown">
 										<a href="home.php?v=mpermit">
 											<i class="fas fa-id-card-alt"></i><span>Mine Permit</span>
@@ -211,7 +171,7 @@ function tanggal_indonesia($tanggal){
 										</a>
 									</li>
 									<li class="dropdown">
-										<a id="logout"  onclick="logout()" href="" data-toggle="dropdown">
+										<a id="logout" onclick="logout()" href="" data-toggle="dropdown">
 											<i class="fas fa-sign-out-alt"></i><span>Keluar</span>
 										</a>
 									</li>
@@ -225,7 +185,6 @@ function tanggal_indonesia($tanggal){
 											});
 										}
 									</script>
-
 									<br><br><br>
 									<br><br><br>
 								</ul>
@@ -243,9 +202,9 @@ function tanggal_indonesia($tanggal){
 									overflow: hidden;
 								}
 							</style>
-							<?php 
+							<?php
 							include '../controller/connection.php';
-							include 'content.php'; 
+							include 'content.php';
 							?>
 						</div>
 
@@ -275,13 +234,11 @@ function tanggal_indonesia($tanggal){
 										<div class="selectgroup selectgroup-pills sidebar-color">
 											<label class="selectgroup-item">
 												<input type="radio" name="icon-input" value="1" class="selectgroup-input select-sidebar">
-												<span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip"
-												data-original-title="Light Sidebar"><i class="fas fa-sun"></i></span>
+												<span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip" data-original-title="Light Sidebar"><i class="fas fa-sun"></i></span>
 											</label>
 											<label class="selectgroup-item">
 												<input type="radio" name="icon-input" value="2" class="selectgroup-input select-sidebar" checked>
-												<span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip"
-												data-original-title="Dark Sidebar"><i class="fas fa-moon"></i></span>
+												<span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip" data-original-title="Dark Sidebar"><i class="fas fa-moon"></i></span>
 											</label>
 										</div>
 									</div>
@@ -316,8 +273,7 @@ function tanggal_indonesia($tanggal){
 									<div class="p-15 border-bottom">
 										<div class="theme-setting-options">
 											<label class="m-b-0">
-												<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
-												id="mini_sidebar_setting">
+												<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" id="mini_sidebar_setting">
 												<span class="custom-switch-indicator"></span>
 												<span class="control-label p-l-10">Mini Sidebar</span>
 											</label>
@@ -326,8 +282,7 @@ function tanggal_indonesia($tanggal){
 									<div class="p-15 border-bottom">
 										<div class="theme-setting-options">
 											<label class="m-b-0">
-												<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
-												id="sticky_header_setting">
+												<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" id="sticky_header_setting">
 												<span class="custom-switch-indicator"></span>
 												<span class="control-label p-l-10">Sticky Header</span>
 											</label>
@@ -384,16 +339,19 @@ function tanggal_indonesia($tanggal){
 
 			<link href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css" rel="stylesheet">
 			<style type="text/css">
-				.buttons-copy  {
+				.buttons-copy {
 					background-color: #828181 !important;
 				}
-				.buttons-excel  {
+
+				.buttons-excel {
 					background-color: #828181 !important;
 				}
-				.buttons-pdf  {
+
+				.buttons-pdf {
 					background-color: #828181 !important;
 				}
-				.buttons-print  {
+
+				.buttons-print {
 					background-color: #828181 !important;
 				}
 			</style>
@@ -408,7 +366,7 @@ function tanggal_indonesia($tanggal){
 						confirmButtonColor: '#FF4747',
 						denyButtonColor: '#ced4da',
 						confirmButtonText: 'Yes'
-					}).then((result) => {  
+					}).then((result) => {
 						if (result.isConfirmed) {
 							window.location = "action/logout.php";
 						}
@@ -416,8 +374,8 @@ function tanggal_indonesia($tanggal){
 				};
 			</script>
 			<script type="text/javascript">
-				if ( window.history.replaceState ) {
-					window.history.replaceState( null, null, window.location.href );
+				if (window.history.replaceState) {
+					window.history.replaceState(null, null, window.location.href);
 				}
 			</script>
 		</body>

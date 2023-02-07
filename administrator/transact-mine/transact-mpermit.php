@@ -8,31 +8,31 @@
   @$closed=mysqli_fetch_array($conn->query("SELECT COUNT(*) AS total FROM mpermit 
   	where mpermit_status_approval = 'Closed'"));
 
-  if ($_POST['today'] != NULL) {
+  if (@$_POST['today'] != NULL) {
   	$header = '<strong>'.tanggal_indonesia(date('Y-m-d')).'</strong>';
   	$date1  = date("Y-m-d");
   	$date2  = date("Y-m-d");
-  } elseif ($_POST['month'] != NULL) {
+  } elseif (@$_POST['month'] != NULL) {
   	$header = '<strong>'.tanggal_indonesia(date('Y-m')).'</strong>';
   	$date1  = date("Y-m-31");
   	$date2  = date("Y-m-01");
-  } elseif ($_POST['year'] != NULL) {
+  } elseif (@$_POST['year'] != NULL) {
   	$header = '<strong> Tahun'.tanggal_indonesia(date("Y")).'</strong>';
   	$date1  = date("Y-12-31");
   	$date2  = date("Y-01-01");
-  } elseif ($_POST['search'] != NULL) {
-  	$header = '<strong>'.tanggal_indonesia($_POST['date1']).' s/d '.tanggal_indonesia($_POST['date2']).'</strong>';
+  } elseif (@$_POST['search'] != NULL) {
+  	$header = '<strong>'.tanggal_indonesia(@$_POST['date1']).' s/d '.tanggal_indonesia(@$_POST['date2']).'</strong>';
   	$date2  = $_POST['date1'];
   	$date1  = $_POST['date2'];
-  	$comp   = $_POST['comp'];
+  	@$comp   = $_POST['comp'];
 
-  } elseif($_POST['open'] != null) {
+  } elseif(@$_POST['open'] != null) {
   	$header = '<strong>Menunggu Approval Safety MIP <small> ( <i>Total : '.$open['total'].'</i>&nbsp; )</small></strong>';
-  } elseif($_POST['progress'] != null) {
+  } elseif(@$_POST['progress'] != null) {
   	$header = '<strong>Menunggu Approval KTT<small> ( <i>Total : '.$progress['total'].'</i>&nbsp; )</small></strong>';
-  } elseif($_POST['reject'] != null) {
+  } elseif(@$_POST['reject'] != null) {
   	$header = '<strong>Pengajuan yang Ditolak <small> ( <i>Total : '.$reject['total'].'</i>&nbsp; )</small></strong>';
-  } elseif($_POST['closed'] != null) {
+  } elseif(@$_POST['closed'] != null) {
   	$header = '<strong>Pengajuan yang Disetujui<small> ( <i>Total : '.$closed['total'].'</i>&nbsp; )</small></strong>';
 
   } else {
@@ -568,29 +568,29 @@
     <tbody>
      <?php 
      if($date1 == NULL) {
-      if($_POST['open'] != NULL) {
+      if(@$_POST['open'] != NULL) {
        $data = mysqli_query($conn,"SELECT * FROM mpermit 
         LEFT JOIN user on user.user_id = mpermit.mpermit_user
         LEFT JOIN company on company.comp_id = user.user_comp
         WHERE mpermit.mpermit_status_approval = 'Open'");
-     } elseif ($_POST['reject'] != NULL) {
+     } elseif (@$_POST['reject'] != NULL) {
        $data = mysqli_query($conn,"SELECT * FROM mpermit 
         LEFT JOIN user on user.user_id = mpermit.mpermit_user
         LEFT JOIN company on company.comp_id = user.user_comp
         WHERE mpermit.mpermit_status_approval = 'Reject'");
-     } elseif($_POST['closed'] != NULL) {
+     } elseif(@$_POST['closed'] != NULL) {
        $data = mysqli_query($conn,"SELECT * FROM mpermit 
         LEFT JOIN user on user.user_id = mpermit.mpermit_user
         LEFT JOIN company on company.comp_id = user.user_comp
         WHERE mpermit.mpermit_status_approval = 'Closed'");
-     } elseif($_POST['progress'] != NULL) {
+     } elseif(@$_POST['progress'] != NULL) {
        $data = mysqli_query($conn,"SELECT * FROM mpermit 
         LEFT JOIN user on user.user_id = mpermit.mpermit_user
         LEFT JOIN company on company.comp_id = user.user_comp
         WHERE mpermit.mpermit_status_approval = 'Progress'");
      }
    }else{
-    if($comp == NULL || $comp == 'all') {
+    if(@$comp == NULL || @$comp == 'all') {
      $data = mysqli_query($conn,"SELECT * FROM mpermit 
       LEFT JOIN user on user.user_id = mpermit.mpermit_user
       LEFT JOIN company on company.comp_id = user.user_comp

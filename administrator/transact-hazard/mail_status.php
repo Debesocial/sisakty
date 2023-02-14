@@ -44,6 +44,7 @@ if(@$hz['hazard_loc_etc'] == '' ) {
 @$mail->Password 	= "eededlbdzyoioycd";
 @$mail->SetFrom("mandiricoalapps@gmail.com","Sisakty");
 @$mail->Subject 	= "Hazard Report | HZ".str_pad($hz['hazard_id'],5,"0",STR_PAD_LEFT)."";
+
 // @$mail->AddAddress($hz['user_email']);
 @$mail->AddAddress("debesocial@gmail.com");  
 @$mail->MsgHTML("
@@ -144,9 +145,6 @@ if(@$hz['hazard_loc_etc'] == '' ) {
 	</tr>
 	</tbody>
 	</table>
-
-
-
 	");
 @$mail->Send()
 ?>

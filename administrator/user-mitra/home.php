@@ -35,8 +35,8 @@ function tanggal_indonesia($tanggal){
     'Desember'
   );
 
-  $pecahkan = explode('-', $tanggal);
-  return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+  @$pecahkan = explode('-', $tanggal);
+  return @$pecahkan[2] . ' ' . @$bulan[ (int)$pecahkan[1] ] . ' ' . @$pecahkan[0];
 }
 ?>
 
@@ -130,7 +130,7 @@ function tanggal_indonesia($tanggal){
        </li>
        <li class="dropdown">
         <a href="home.php?v=hazard">
-         <i class="fas fa-exclamation-triangle"></i><span>Hazard Report</span>
+         <i class="fas fa-exclamation-triangle"></i><span>Harmonis</span>
        </a>
      </li>
      <li class="dropdown">
@@ -138,35 +138,30 @@ function tanggal_indonesia($tanggal){
         <i class="fas fa-id-card-alt"></i><span>Mine Permit</span>
       </a>
     </li>
-    <!-- <li class="dropdown">
-      <a onclick="myFunction()">
-       <i class="fas fa-address-card"></i><span>SIM Permit</span>
-     </a>
-   </li> -->
-   <li class="menu-header">Akun</li>
-   <li class="dropdown">
-    <a href="home.php?v=setting">
-      <i class="fas fa-cog"></i><span>Pengaturan</span>
-    </a>
-  </li>
-  <li class="dropdown">
-    <a id="logout"  onclick="logout()" href="" data-toggle="dropdown">
-      <i class="fas fa-sign-out-alt"></i><span>Keluar</span>
-    </a>
-  </li>
+    <li class="menu-header">Akun</li>
+    <li class="dropdown">
+      <a href="home.php?v=setting">
+        <i class="fas fa-cog"></i><span>Pengaturan</span>
+      </a>
+    </li>
+    <li class="dropdown">
+      <a id="logout"  onclick="logout()" href="" data-toggle="dropdown">
+        <i class="fas fa-sign-out-alt"></i><span>Keluar</span>
+      </a>
+    </li>
 
-  <script>
-   function myFunction() {
-    Swal.fire({
-     icon: 'info',
-     title: 'Under Contruction !',
-     showConfirmButton: true
-   });
-  }
-</script>
+    <script>
+     function myFunction() {
+      Swal.fire({
+       icon: 'info',
+       title: 'Under Contruction !',
+       showConfirmButton: true
+     });
+    }
+  </script>
 
-<br><br><br>
-<br><br><br>
+  <br><br><br>
+  <br><br><br>
 </ul>
 </aside>
 </div>

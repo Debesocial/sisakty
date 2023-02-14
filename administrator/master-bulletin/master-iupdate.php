@@ -20,7 +20,7 @@
 								</div>
 								<div class="form-group">
 									<label>Foto (optional)</label>
-									<input type="file" class="form-control"  placeholder="Lampiran" name="foto">
+									<input type="file" class="form-control"  placeholder="Lampiran" name="foto" accept="image/*">
 								</div>
 								<div class="form-group">
 									<label>Lampiran (optional)</label>
@@ -55,19 +55,19 @@
 								@$iupdate = mysqli_fetch_array($conn->query("SELECT * FROM iupdate  where  iupdate_id = '$id'"));?>
 								<div class="form-group">
 									<label>Judul</label>
-									<input type="text" class="form-control" id="" required placeholder="Judul" name="name" value="<?php echo $iupdate['iupdate_name']?>">
+									<input type="text" class="form-control" id="" required placeholder="Judul" name="name" value="<?= $iupdate['iupdate_name']?>">
 								</div>
 								<div class="form-group">
 									<label>Deskripsi</label>
-									<textarea type="text" class="form-control" id="" required placeholder="Deskripsi" name="desc"><?php echo $iupdate['iupdate_desc']?></textarea>
+									<textarea type="text" class="form-control" id="" required placeholder="Deskripsi" name="desc"><?= $iupdate['iupdate_desc']?></textarea>
 								</div>
 								<div class="form-group">
 									<label>Foto (optional)</label>
-									<input type="file" class="form-control" name="foto" value="<?php echo $iupdate['iupdate_img']?>">
+									<input type="file" class="form-control" name="foto" value="<?= $iupdate['iupdate_img']?>" accept="image/*">
 								</div>
 								<div class="form-group">
 									<label>Lampiran (optional)</label>
-									<input type="file" class="form-control" name="file" value="<?php echo $iupdate['iupdate_file']?>">
+									<input type="file" class="form-control" name="file" value="<?= $iupdate['iupdate_file']?>">
 								</div>
 								<div class="form-group">
 									<label>&nbsp;</label>
@@ -126,19 +126,19 @@
 									$data = mysqli_query($conn,"SELECT * FROM iupdate");
 									while($row  = mysqli_fetch_array($data)){ ?> 
 										<tr>
-											<td><B><?php echo $row['iupdate_name']; ?></B><BR><small><u><?php echo $row['iupdate_date']; ?></u><br><?php echo $row['iupdate_desc']; ?></small><br><br></td>
+											<td><B><?= $row['iupdate_name']; ?></B><BR><small><u><?= $row['iupdate_date']; ?></u><br><?= $row['iupdate_desc']; ?></small><br><br></td>
 											<td>
-												<?php if ($row['iupdate_img'] != '') {?><img style="border-radius: 10px 0px 10px 0px;" width="150px" src="../assets/iupdate/<?php echo $row['iupdate_img']; ?>">
+												<?php if ($row['iupdate_img'] != '') {?><img style="border-radius: 10px 0px 10px 0px;" width="150px" src="../assets/iupdate/<?= $row['iupdate_img']; ?>">
 											<?php }?>
 										</td>
 										<td><center>
 											<?php if ($row['iupdate_file'] == '') {?>
 												<a style="pointer-events: none;cursor: default;" class="btn btn-sm btn-outline-success"><i class="fas fa-download"></i></a>
 											<?php } else { ?>
-												<a href="../assets/iupdate/file/<?php echo $row['iupdate_file']; ?>" class="btn btn-outline-success"><i class="fas fa-download"></i></a>
+												<a href="../assets/iupdate/file/<?= $row['iupdate_file']; ?>" class="btn btn-outline-success"><i class="fas fa-download"></i></a>
 											<?php } ?>
 
-											<a href="home.php?v=miupdate&act=update&id=<?php echo $row['iupdate_id']; ?>" class="btn btn-outline-success"><i class="fas fa-edit"></i></a>
+											<a href="home.php?v=miupdate&act=update&id=<?= $row['iupdate_id']; ?>" class="btn btn-outline-success"><i class="fas fa-edit"></i></a>
 
 											<script>
 												$(document).ready(function(){
@@ -158,7 +158,7 @@
 													});
 												});
 											</script>
-											<a href="#" data-id="<?php echo $row['iupdate_id']; ?>" id="del" class="btn btn-outline-danger">
+											<a href="#" data-id="<?= $row['iupdate_id']; ?>" id="del" class="btn btn-outline-danger">
 												<i class="fas fa-trash"></i>
 											</a> </center>
 										</td>
@@ -207,7 +207,7 @@
 				e.preventDefault();
 				var formData = new FormData(this);
 				$.ajax({
-					url  : "action/action.php?action=iupdate&act=update&id=<?php echo $iupdate['iupdate_id'];?>",
+					url  : "action/action.php?action=iupdate&act=update&id=<?= $iupdate['iupdate_id'];?>",
 					type : "POST",
 					cache:false,
 					data :formData,

@@ -81,7 +81,7 @@
 										<tr>
 											<th>Status</th>
 											<th style="min-width: 150px;">Tanggal</th>
-											<th style="min-width: 70px;" >ID Hazard</th>
+											<th style="min-width: 70px;" >ID Harmonis</th>
 											<th style="min-width: 70px;" >Judul</th>
 											<th style="min-width: 150px;">Nama Pelapor</th>
 											<th style="min-width: 150px;">Klasifikasi</th>
@@ -425,7 +425,7 @@
 					<i class="fas fa-download"></i> Export Grafik
 				</button><br><br>
 				<div id="grafiks" >
-					<script type="text/javascript" src="../../assets/js/chartjs/Chart.js"></script>
+					<script type="text/javascript" src="../assets/js/chartjs/Chart.js"></script>
 					<div class="row ">
 						<div class="col-4 col-md-4 col-lg-4">
 							<div class="card ">

@@ -1,7 +1,7 @@
 <?php
-require_once '../../../../lib/PHPExcel.php';
-require_once '../../../../lib/PHPExcel/IOFactory.php';
-require_once '../../../../controller/connection.php';
+require_once '../../../lib/PHPExcel.php';
+require_once '../../../lib/PHPExcel/IOFactory.php';
+require_once '../../../controller/connection.php';
 $date1 = $_GET['d1'];
 $date2 = $_GET['d2'];
 $comp = $_GET['comp'];
@@ -11,10 +11,10 @@ $objPHPExcel = new PHPExcel();
 
 //=======================================================================================================================================================//
 $objPHPExcel->setActiveSheetIndex(0);
-$objPHPExcel->getActiveSheet()->setCellValue('B2', 'HAZARD REPORT');
+$objPHPExcel->getActiveSheet()->setCellValue('B2', 'Harmonis');
 $objPHPExcel->getActiveSheet()->setCellValue('B3', 'Status');
 $objPHPExcel->getActiveSheet()->setCellValue('C3', 'Tanggal');
-$objPHPExcel->getActiveSheet()->setCellValue('D3', 'ID Hazard');
+$objPHPExcel->getActiveSheet()->setCellValue('D3', 'ID Harmonis');
 $objPHPExcel->getActiveSheet()->setCellValue('E3', 'Judul');
 $objPHPExcel->getActiveSheet()->setCellValue('F3', 'Nama Pelapor');
 $objPHPExcel->getActiveSheet()->setCellValue('G3', 'Klasifikasi');
@@ -51,7 +51,7 @@ while($hazard_data = mysqli_fetch_array($hazard))
 	$objPHPExcel->getActiveSheet()->setCellValue('M'.$row, $hazard_data['comp_name']);
 	$row++;
 }
-$objPHPExcel->getActiveSheet()->setTitle('Hazard Report');
+$objPHPExcel->getActiveSheet()->setTitle('Harmonis');
 
 //=======================================================================================================================================================//
 $objPHPExcel->createSheet();
@@ -238,7 +238,7 @@ while($divisi_data = mysqli_fetch_array($divisi))
 }
 //--------------------------------------------------------------------------------------------------
 $objPHPExcel->getActiveSheet()->setTitle('Berdasarkan Divisi Pelapor');
-$excelname = 'Hazard Report ('.$date1.' to '.$date2.').xls';
+$excelname = 'Harmonis ('.$date1.' to '.$date2.').xls';
 header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment;filename='.$excelname.'');
 header('Cache-Control: max-age=0');

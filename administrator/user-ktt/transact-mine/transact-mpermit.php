@@ -8,28 +8,28 @@
   @$closed=mysqli_fetch_array($conn->query("SELECT COUNT(*) AS total FROM mpermit
     where mpermit_status_approval = 'Closed'"));
 
-  if ($_POST['today'] != NULL) {
+  if (@$_POST['today'] != NULL) {
   	$header = '<strong>'.tanggal_indonesia(date('Y-m-d')).'</strong>';
   	$date1  = date("Y-m-d");
   	$date2  = date("Y-m-d");
-  } elseif ($_POST['month'] != NULL) {
+  } elseif (@$_POST['month'] != NULL) {
   	$header = '<strong>'.tanggal_indonesia(date('Y-m')).'</strong>';
   	$date1  = date("Y-m-31");
   	$date2  = date("Y-m-01");
-  } elseif ($_POST['year'] != NULL) {
+  } elseif (@$_POST['year'] != NULL) {
   	$header = '<strong>Tahun'.tanggal_indonesia(date("Y")).'</strong>';
   	$date1  = date("Y-12-31");
   	$date2  = date("Y-01-01");
-  } elseif ($_POST['search'] != NULL) {
+  } elseif (@$_POST['search'] != NULL) {
   	$header = '<strong>'.tanggal_indonesia($_POST['date1']).' s/d '.tanggal_indonesia($_POST['date2']).'</strong>';
   	$date2  = $_POST['date1'];
   	$date1  = $_POST['date2'];
   	$comp   = $_POST['comp'];
-  } elseif($_POST['open'] != null) {
+  } elseif(@$_POST['open'] != null) {
     $header = '<strong>Pengajuan yang harus di Approve Safety MIP<small> ( <i>Total : '.$open['total'].'</i>&nbsp; )</small></strong>';
-  } elseif($_POST['reject'] != null) {
+  } elseif(@$_POST['reject'] != null) {
     $header = '<strong>Pengajuan yang direject<small> ( <i>Total : '.$reject['total'].'</i>&nbsp; )</small></strong>';
-  } elseif($_POST['closed'] != null) {
+  } elseif(@$_POST['closed'] != null) {
     $header = '<strong>Pengajuan yang disetujui<small> ( <i>Total : '.$closed['total'].'</i>&nbsp; )</small></strong>';
   } else {
   	$header = '<strong>Pengajuan yang harus di Approve</strong> <small>( <i>Total : '.$progress['total'].'</i></small>&nbsp; )';
@@ -507,13 +507,12 @@
   								<div class="card-header-form">
   								</div>    
   							</div>
-
+                
   							<div class="card-body">
   								<div class="table-responsive">
   									<?php
   									if (isset($_POST["submits"])) {
-  										if (count($_POST["ids"]) > 0) {
-                        $date = 
+  										if (@count($_POST["ids"]) > 0) {
                         $all = implode(",", $_POST["ids"]);
                         $sql = mysqli_query($conn, "UPDATE mpermit SET 
                           mpermit_approval_ktt    = 'Approve',
@@ -539,117 +538,118 @@
                       <form name="multipledeletion" method="post">
                        <table class="table table-striped table-hover" id="datatable_export" style="width:100%;">
                         <thead>
-                         <?php if($multi == 'Y'){?>
-                          <tr>
-                           <button type="submit" name="submits" class="btn btn-outline-success btn-md pull-left" onClick="return confirm('Are you sure you want to Approve?');"><i class="fas fa-check"></i> Approve yang Dipilih</button>
+                          <?php if(@$multi == 'Y'){?>
+                            <tr>
+                             <button type="submit" name="submits" class="btn btn-outline-success btn-md pull-left" onClick="return confirm('Are you sure you want to Approve?');"><i class="fas fa-check"></i> Approve yang Dipilih</button>
+                           </tr>
+                         <?php } ?>
+                         <tr>
+                           <th><input type="checkbox" id="select_all" /></th>
+                           <th width="15%">Status Timeline</th>
+                           <th hidden>Datetime</th>
+                           <th>Tanggal</th>
+                           <th>Status</th>
+                           <th>Kategori</th>
+                           <th width="20%">User</th>
+                           <th>PIC</th>
+                           <th style="text-align: center">Action</th>
                          </tr>
-                       <?php } ?>
-                       <tr>
-                         <th><input type="checkbox" id="select_all" /></th>
-                         <th width="15%">Status Timeline</th>
-                         <th hidden>Datetime</th>
-                         <th>Tanggal</th>
-                         <th>Status</th>
-                         <th>Kategori</th>
-                         <th width="20%">User</th>
-                         <th>PIC</th>
-                         <th style="text-align: center">Action</th>
-                       </tr>
-                     </thead>
-                     <tbody>
-                       <?php 
-                       if ($date1 == NULL) {
-                        if($_POST['open'] != NULL) {
-                          $data = mysqli_query($conn,"SELECT * FROM mpermit 
+                       </thead>
+                       <tbody>
+                         <?php 
+                         if (@$date1 == NULL) {
+                          if(@$_POST['open'] != NULL) {
+                            $data = mysqli_query($conn,"SELECT * FROM mpermit 
+                              LEFT JOIN user on user.user_id = mpermit.mpermit_user
+                              LEFT JOIN company on company.comp_id = user.user_comp
+                              WHERE mpermit.mpermit_status_approval = 'Open'");
+                          } elseif (@$_POST['reject'] != NULL) {
+                           $data = mysqli_query($conn,"SELECT * FROM mpermit 
                             LEFT JOIN user on user.user_id = mpermit.mpermit_user
                             LEFT JOIN company on company.comp_id = user.user_comp
-                            WHERE mpermit.mpermit_status_approval = 'Open'");
-                        } elseif ($_POST['reject'] != NULL) {
+                            WHERE mpermit.mpermit_status_approval = 'Reject'");
+                         } elseif(@$_POST['closed'] != NULL) {
+                           $data = mysqli_query($conn,"SELECT * FROM mpermit 
+                            LEFT JOIN user on user.user_id = mpermit.mpermit_user
+                            LEFT JOIN company on company.comp_id = user.user_comp
+                            WHERE mpermit.mpermit_status_approval = 'Closed'");
+                         } else {
+                           $data = mysqli_query($conn,"SELECT * FROM mpermit 
+                            LEFT JOIN user on user.user_id = mpermit.mpermit_user
+                            LEFT JOIN company on company.comp_id = user.user_comp
+                            WHERE mpermit.mpermit_status_approval = 'Progress'");
+                         }
+                       }else{
+                        if(@$comp == NULL || @$comp == 'all') {
                          $data = mysqli_query($conn,"SELECT * FROM mpermit 
                           LEFT JOIN user on user.user_id = mpermit.mpermit_user
                           LEFT JOIN company on company.comp_id = user.user_comp
-                          WHERE mpermit.mpermit_status_approval = 'Reject'");
-                       } elseif($_POST['closed'] != NULL) {
+                          WHERE mpermit.mpermit_date <= '$date1'
+                          AND mpermit.mpermit_date >= '$date2'");
+                       }else{
                          $data = mysqli_query($conn,"SELECT * FROM mpermit 
                           LEFT JOIN user on user.user_id = mpermit.mpermit_user
                           LEFT JOIN company on company.comp_id = user.user_comp
-                          WHERE mpermit.mpermit_status_approval = 'Closed'");
-                       } else {
-                         $data = mysqli_query($conn,"SELECT * FROM mpermit 
-                          LEFT JOIN user on user.user_id = mpermit.mpermit_user
-                          LEFT JOIN company on company.comp_id = user.user_comp
-                          WHERE mpermit.mpermit_status_approval = 'Progress'");
+                          WHERE mpermit.mpermit_date <= '$date1'
+                          AND mpermit.mpermit_date >= '$date2'
+                          AND mpermit.mpermit_pic = '$comp'");
                        }
-                     }else{
-                      if($comp == NULL || $comp == 'all') {
-                       $data = mysqli_query($conn,"SELECT * FROM mpermit 
-                        LEFT JOIN user on user.user_id = mpermit.mpermit_user
-                        LEFT JOIN company on company.comp_id = user.user_comp
-                        WHERE mpermit.mpermit_date <= '$date1'
-                        AND mpermit.mpermit_date >= '$date2'");
-                     }else{
-                       $data = mysqli_query($conn,"SELECT * FROM mpermit 
-                        LEFT JOIN user on user.user_id = mpermit.mpermit_user
-                        LEFT JOIN company on company.comp_id = user.user_comp
-                        WHERE mpermit.mpermit_date <= '$date1'
-                        AND mpermit.mpermit_date >= '$date2'
-                        AND mpermit.mpermit_pic = '$comp'");
                      }
-                   }
 
-                   while($row  = mysqli_fetch_array($data)){ ?> 
-                    <tr>
-                      <td><input type="checkbox" class="checkbox" name="ids[]" value="<?php echo $row['mpermit_id'];?>"/></td>
-                      <td style="width: 50px;">
-                        <?php if ($row['mpermit_status_approval'] == 'Open') {
-                          echo'<span class="badge badge-pill badge-warning">&nbsp;&nbsp;&nbsp;Open&nbsp;&nbsp;</span>';
-                        } elseif ($row['mpermit_status_approval'] == 'Progress') {
-                          echo'<span class="badge badge-pill badge-primary">Progress</span>';
-                        } elseif ($row['mpermit_status_approval'] == 'Closed') {
-                          echo'<span class="badge badge-pill badge-success">&nbsp;&nbsp;Closed&nbsp;&nbsp;</span>';
-                        } elseif ($row['mpermit_status_approval'] == 'Reject') {
-                          echo'<span class="badge badge-pill badge-danger">Rejected</span>';
-                        } elseif ($row['mpermit_status_approval'] == 'Cancel') {
-                          echo'<span class="badge badge-pill badge-danger">Canceled</span>';
+                     while($row  = mysqli_fetch_array($data)){ ?> 
+                      <tr>
+                        <td><input type="checkbox" class="checkbox" name="ids[]" value="<?php echo $row['mpermit_id'];?>"/></td>
+                        <td style="width: 50px;">
+                          <?php if ($row['mpermit_status_approval'] == 'Open') {
+                            echo'<span class="badge badge-pill badge-warning">&nbsp;&nbsp;&nbsp;Open&nbsp;&nbsp;</span>';
+                          } elseif ($row['mpermit_status_approval'] == 'Progress') {
+                            echo'<span class="badge badge-pill badge-primary">Progress</span>';
+                          } elseif ($row['mpermit_status_approval'] == 'Closed') {
+                            echo'<span class="badge badge-pill badge-success">&nbsp;&nbsp;Closed&nbsp;&nbsp;</span>';
+                          } elseif ($row['mpermit_status_approval'] == 'Reject') {
+                            echo'<span class="badge badge-pill badge-danger">Rejected</span>';
+                          } elseif ($row['mpermit_status_approval'] == 'Cancel') {
+                            echo'<span class="badge badge-pill badge-danger">Canceled</span>';
+                          }?>
+                        </td>
+                        <td hidden=""><?= $row['mpermit_creation_date']?></td>
+                        <td><?= $row['mpermit_date']?></td>
+                        <td><?= $row['mpermit_status']?></td>
+                        <td><?= $row['mpermit_categories']?>
+                        <?php if($row['mpermit_categories'] == 'Visitor'){
+                          echo '<br>Berlaku Sampai : <br>'.$row['mpermit_enddate'];
                         }?>
                       </td>
-                      <td hidden=""><?= $row['mpermit_creation_date']?></td>
-                      <td><?= $row['mpermit_date']?></td>
-                      <td><?= $row['mpermit_status']?></td>
-                      <td><?= $row['mpermit_categories']?>
-                      <?php if($row['mpermit_categories'] == 'Visitor'){
-                        echo '<br>Berlaku Sampai : <br>'.$row['mpermit_enddate'];
-                      }?>
-                    </td>
-                    <td>
-                      <a href="home.php?v=muser&act=detail&id=<?= $row['mpermit_user']; ?>"><?= $row['user_name']?></a>
-                      <br>NIK : <?= $row['user_nik']?>
-                    </td>
-                    <td><?= $row['comp_name']?></td>
-                    <td style="text-align: center">
-                     <?php if(
-                      $row['mpermit_approval_ktt']    == 'Approve' || 
-                      $row['mpermit_status_approval'] == 'Open'    || 
-                      $row['mpermit_status_approval'] == 'Reject'  || 
-                      $row['mpermit_status_approval'] == 'Cancel') {?>
-                        <a class="btn btn-outline-secondary" style="color:#cdd3d8;border-color:#cdd3d8;">&nbsp;<i class="fas fa-check"></i> Approve&nbsp;</a>
-                        <a class="btn btn-outline-secondary" style="color:#cdd3d8;border-color:#cdd3d8;">&nbsp;<i class="fas fa-times"></i> Reject&nbsp;</a>
-                      <?php } else { ?>
-                        <a href="" data-toggle="modal" class="btn btn-outline-success MClick1" data-id="<?= $row['mpermit_id']; ?>" data-target="#approve">&nbsp;<i class="fas fa-check"></i> Approve&nbsp;</a>
-                        <a href="" data-toggle="modal" class="btn btn-outline-danger MClick3" data-id="<?= $row['mpermit_id']; ?>" data-target="#reject">&nbsp;<i class="fas fa-times"></i> Reject&nbsp;</a>
-                      <?php } ?>
-                    </td>
-                  </tr>
-                <?php } ?>
+                      <td>
+                        <a href="home.php?v=muser&act=detail&id=<?= $row['mpermit_user']; ?>"><?= $row['user_name']?></a>
+                        <br>NIK : <?= $row['user_nik']?>
+                      </td>
+                      <td><?= $row['comp_name']?></td>
+                      <td style="text-align: center">
+                       <?php if(
+                        $row['mpermit_approval_ktt']    == 'Approve' ||
+                        $row['mpermit_submitter']       == 'System' || 
+                        $row['mpermit_status_approval'] == 'Open'    || 
+                        $row['mpermit_status_approval'] == 'Reject'  || 
+                        $row['mpermit_status_approval'] == 'Cancel') {?>
+                          <a class="btn btn-outline-secondary" style="color:#cdd3d8;border-color:#cdd3d8;">&nbsp;<i class="fas fa-check"></i> Approve&nbsp;</a>
+                          <a class="btn btn-outline-secondary" style="color:#cdd3d8;border-color:#cdd3d8;">&nbsp;<i class="fas fa-times"></i> Reject&nbsp;</a>
+                        <?php } else { ?>
+                          <a href="" data-toggle="modal" class="btn btn-outline-success MClick1" data-id="<?= $row['mpermit_id']; ?>" data-target="#approve">&nbsp;<i class="fas fa-check"></i> Approve&nbsp;</a>
+                          <a href="" data-toggle="modal" class="btn btn-outline-danger MClick3" data-id="<?= $row['mpermit_id']; ?>" data-target="#reject">&nbsp;<i class="fas fa-times"></i> Reject&nbsp;</a>
+                        <?php } ?>
+                      </td>
+                    </tr>
+                  <?php } ?>
 
-              </tbody>
-            </table>
-          </form>
+                </tbody>
+              </table>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 
 <script type="text/javascript">

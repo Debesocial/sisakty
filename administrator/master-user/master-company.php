@@ -44,7 +44,7 @@
 								<div class="form-group">
 									<label>Perusahaan</label>
 									<input type="text" class="form-control" id="" required placeholder="Perusahaan" name="company" 
-									value="<?php echo $companyupdate['comp_name']?>">
+									value="<?= $companyupdate['comp_name']?>">
 								</div>
 								<div class="form-group">
 									<label>&nbsp;</label>
@@ -76,119 +76,104 @@
 						</thead>
 						<tbody>
 							<?php 
-							if(@$_GET['act'] == 'del') {
-								$id 	  = $_GET['id'];
-								$sql 	  = 'DELETE FROM company WHERE comp_id = '.$id.'';
-								$delete   = mysqli_query($conn, $sql);
-								if ($delete) {
-									echo"
-									<script>
-									Swal.fire({icon: 'success', title: 'Data berhasil dihapus', showConfirmButton: false, timer: 1500
-									}).then(function() {
-										location.href = 'home.php?v=mcompany&act=add';
-										});
-										</script>";
-									} else { 
-										echo"
-										<script>
-										Swal.fire({ icon: 'success', title: 'Data gagal dihapus', showConfirmButton: false, timer: 1500
-										}).then(function() {
-											location.href = 'home.php?v=mcompany&act=add';
+							// if(@$_GET['act'] == 'del') {
+							// 	$id 	  = $_GET['id'];
+							// 	$sql 	  = 'DELETE FROM company WHERE comp_id = '.$id.'';
+							// 	$delete   = mysqli_query($conn, $sql);
+							// 	if ($delete) {
+							// 		echo"<script>Swal.fire({icon: 'success', title: 'Data berhasil dihapus', showConfirmButton: false, timer: 1500}).then(function() {location.href = 'home.php?v=mcompany&act=add';});</script>";
+							// 	} else { 
+							// 		echo"<script>Swal.fire({ icon: 'success', title: 'Data gagal dihapus', showConfirmButton: false, timer: 1500}).then(function() {location.href = 'home.php?v=mcompany&act=add';});</script>";
+							// 	}
+							// }
+
+							$data = mysqli_query($conn,"SELECT * FROM company");
+							while($row  = mysqli_fetch_array($data)){ ?> 
+								<tr>
+									<td><?= $row['comp_name']; ?></td>
+									<td>
+										<a href="home.php?v=mcompany&act=update&id=<?= $row['comp_id']; ?>" class="btn btn-outline-success"><i class="fas fa-edit"></i></a>
+										<!-- <script>
+											$(document).ready(function(){
+												$(document).on("click", "#del", function(){
+													Swal.fire({
+														title: 'Are you sure?',
+														text: "You won't be able to revert this!",
+														icon: 'warning',
+														showCancelButton: true,
+														confirmButtonColor: '#3085d6',
+														cancelButtonColor: '#d33',
+														confirmButtonText: '<a style="color:#fff;text-decoration: none;" href="home.php?v=mcompany&act=del&id=<?= $row['comp_id']; ?>">Yes</a>'
+													})
+												});
 											});
-											</script>";
-										}
-									}
-
-									$data = mysqli_query($conn,"SELECT * FROM company");
-									while($row  = mysqli_fetch_array($data)){ ?> 
-										<tr>
-											<td><?php echo $row['comp_name']; ?></td>
-											<td>
-												<a href="home.php?v=mcompany&act=update&id=<?php echo $row['comp_id']; ?>" class="btn btn-outline-success"><i class="fas fa-edit"></i></a>
-
-												<script>
-													$(document).ready(function(){
-														$(document).on("click", "#del", function(){
-															Swal.fire({
-																title: 'Are you sure?',
-																text: "You won't be able to revert this!",
-																icon: 'warning',
-																showCancelButton: true,
-																confirmButtonColor: '#3085d6',
-																cancelButtonColor: '#d33',
-																confirmButtonText: '<a style="color:#fff;text-decoration: none;" href="home.php?v=mcompany&act=del&id=<?php echo $row['comp_id']; ?>">Yes</a>'
-															})
-														});
-													});
-												</script>
-													<!-- <a href="#" id="del" class="btn btn-sm btn-danger">
-														<i class="fas fa-trash"></i>
-													</a>  -->
-												</td>
-											</tr>
-										<?php } ?>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
+										</script> -->
+										<!-- <a href="#" id="del" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>  -->
+									</td>
+								</tr>
+							<?php } ?>
+						</tbody>
+					</table>
 				</div>
 			</div>
+		</div>
+	</div>
+</div>
 
-			<!-- ADD company -->
-			<script type="text/javascript">
-				$(document).ready(function(){
-					$("#form-company-add").on("submit", function(e){
-						e.preventDefault();
-						var formData = new FormData(this);
-						$.ajax({
-							url  : "action/action.php?action=company&act=add",
-							type : "POST",
-							cache:false,
-							data :formData,
-							contentType : false, 
-							processData: false,
-							success : function(data){
-								Swal.fire({
-									icon: 'success',
-									title: 'Berhasil Ditambahkan!',
-									showConfirmButton: false,
-									timer: 1000
-								}).then(function() {
-									location.href = 'home.php?v=mcompany&act=add';
-								});
-							}
-						});
+<!-- ADD company -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#form-company-add").on("submit", function(e){
+			e.preventDefault();
+			var formData = new FormData(this);
+			$.ajax({
+				url  : "action/action.php?action=company&act=add",
+				type : "POST",
+				cache:false,
+				data :formData,
+				contentType : false, 
+				processData: false,
+				success : function(data){
+					Swal.fire({
+						icon: 'success',
+						title: 'Berhasil Ditambahkan!',
+						showConfirmButton: false,
+						timer: 1000
+					}).then(function() {
+						location.href = 'home.php?v=mcompany&act=add';
 					});
-				});
-			</script>
+				}
+			});
+		});
+	});
+</script>
 
-			<!-- UPDATE company -->
-			<script type="text/javascript">
-				$(document).ready(function(){
-					$("#form-company-update").on("submit", function(e){
-						e.preventDefault();
-						var formData = new FormData(this);
-						$.ajax({
-							url  : "action/action.php?action=company&act=update&id=<?php echo $companyupdate['comp_id'];?>",
-							type : "POST",
-							cache:false,
-							data :formData,
-							contentType : false, 
-							processData: false,
-							success : function(data){
-								Swal.fire({
-									icon: 'success',
-									title: 'Berhasil Diubah!',
-									showConfirmButton: false,
-									timer: 1000
-								}).then(function() {
-									location.href = 'home.php?v=mcompany&act=add';
-								});
-							}
-						});
+<!-- UPDATE company -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#form-company-update").on("submit", function(e){
+			e.preventDefault();
+			var formData = new FormData(this);
+			$.ajax({
+				url  : "action/action.php?action=company&act=update&id=<?= $companyupdate['comp_id'];?>",
+				type : "POST",
+				cache:false,
+				data :formData,
+				contentType : false, 
+				processData: false,
+				success : function(data){
+					Swal.fire({
+						icon: 'success',
+						title: 'Berhasil Diubah!',
+						showConfirmButton: false,
+						timer: 1000
+					}).then(function() {
+						location.href = 'home.php?v=mcompany&act=add';
 					});
-				});
-			</script>
+				}
+			});
+		});
+	});
+</script>
 
 

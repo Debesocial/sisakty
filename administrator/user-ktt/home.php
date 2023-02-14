@@ -34,8 +34,8 @@ function tanggal_indonesia($tanggal){
     'Desember'
   );
 
-  $pecahkan = explode('-', $tanggal);
-  return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+  @$pecahkan = explode('-', $tanggal);
+  return @$pecahkan[2] . ' ' . @$bulan[ (int)$pecahkan[1] ] . ' ' . @$pecahkan[0];
 }
 ?>
 
@@ -128,7 +128,7 @@ function tanggal_indonesia($tanggal){
             </li>
             <li class="dropdown">
               <a href="home.php?v=hazard">
-                <i class="fas fa-exclamation-triangle"></i><span>Hazard Report</span>
+                <i class="fas fa-exclamation-triangle"></i><span>Harmonis</span>
               </a>
             </li>
             <li class="dropdown">

@@ -1,18 +1,18 @@
 <?php 
-if ($_POST['today'] != NULL) {
+if (@$_POST['today'] != NULL) {
   $header = tanggal_indonesia(date('Y-m-d'));
   $date2  = date("Y-m-d");
   $date1  = date("Y-m-d");
-} elseif ($_POST['month'] != NULL) {
+} elseif (@$_POST['month'] != NULL) {
   $header = tanggal_indonesia(date('Y-m'));
   $date2  = date("Y-m-31");
   $date1  = date("Y-m-01");
-} elseif ($_POST['year'] != NULL) {
+} elseif (@$_POST['year'] != NULL) {
   $header = 'Tahun'.tanggal_indonesia(date("Y"));
   $date2  = date("Y-12-31");
   $date1  = date("Y-01-01");
 } else {
-  $header = 'Hazard Report 30 Hari Terakhir';
+  $header = 'Harmonis 30 Hari Terakhir';
   $date2  = date("Y-m-d");
   $date1  = date('Y-m-d', strtotime('-30 days'));
 }
@@ -85,7 +85,7 @@ if(@$_GET['act'] == 'detail'){
                 <center><img src="../assets/hazard/noimage.jpg" alt="image" class="imaged img-fluid" width="80%"></center>
               <?php } ?>
               <tbody>
-                <tr><th>ID Hazard</th><td> <?= 'HZ'.str_pad($report['hazard_id'],5,"0",STR_PAD_LEFT);?></td> </tr> 
+                <tr><th>Harmonis</th><td> <?= 'HZ'.str_pad($report['hazard_id'],5,"0",STR_PAD_LEFT);?></td> </tr> 
                 <tr><th>Judul</th><td><?= $report['hazard_name'];?></td> </tr>
                 <tr><th>Klasifikasi</th><td><?= $report['classi_name'];?></td> </tr>
                 <tr><th>Lokasi</th><td> 
@@ -104,30 +104,30 @@ if(@$_GET['act'] == 'detail'){
                      <div class="form-row">
                        <div class="col">
                          <select class="form-control select2" id="" required name="divisi" disabled="">
-                           <option value="<?php echo $report['hazard_divisi'];?>">
+                           <option value="<?= $report['hazard_divisi'];?>">
                              <?php $div =  $report['hazard_divisi'];
                              @$divisi = mysqli_fetch_array($conn->query("SELECT * FROM divisi where  divisi_id = '$div'"));
                              echo $divisi['divisi_name'];?>
                            </option>
                            <?php $data = mysqli_query($conn,"select * from divisi");
                            while($row  = mysqli_fetch_array($data)){ ?> 
-                             <option value=<?php echo $row['divisi_id'];?>> 
-                               <?php echo $row['divisi_name'];
+                             <option value=<?= $row['divisi_id'];?>> 
+                               <?= $row['divisi_name'];
                              }?> 
                            </option>
                          </select>
                        </div>
                        <div class="col">
                         <select class="form-control select2" id="" required name="comp" width="122"  disabled="">
-                          <option value="<?php echo $report['hazard_comp'];?>">
+                          <option value="<?= $report['hazard_comp'];?>">
                             <?php $com =  $report['hazard_comp'];
                             @$comp = mysqli_fetch_array($conn->query("SELECT * FROM company where comp_id = '$com'"));
                             echo $comp['comp_name'];?>
                           </option>
                           <?php $data = mysqli_query($conn,"select * from company");
                           while($row  = mysqli_fetch_array($data)){ ?> 
-                            <option value=<?php echo $row['comp_id'];?>> 
-                              <?php echo $row['comp_name'];
+                            <option value=<?= $row['comp_id'];?>> 
+                              <?= $row['comp_name'];
                             }?> 
                           </option>
                         </select>
@@ -139,15 +139,15 @@ if(@$_GET['act'] == 'detail'){
                       <div class="form-row">
                         <div class="col">
                          <select class="form-control select2" id="comp" required name="comp" width="122">
-                          <option value="<?php echo $report['hazard_comp'];?>">
+                          <option value="<?= $report['hazard_comp'];?>">
                            <?php $com =  $report['hazard_comp'];
                            @$comp = mysqli_fetch_array($conn->query("SELECT * FROM company where comp_id = '$com'"));
                            echo $comp['comp_name'];?>
                          </option>
                          <?php $data = mysqli_query($conn,"select * from company order by comp_name asc");
                          while($row  = mysqli_fetch_array($data)){ ?> 
-                          <option value=<?php echo $row['comp_id'];?>> 
-                            <?php echo $row['comp_name'];
+                          <option value=<?= $row['comp_id'];?>> 
+                            <?= $row['comp_name'];
                           }?> 
                         </option>
                       </select>
@@ -155,15 +155,15 @@ if(@$_GET['act'] == 'detail'){
 
                     <div class="col">
                       <select class="form-control select2" id="divisi" required name="divisi">
-                        <option value="<?php echo $report['hazard_comp'].'-'.$report['hazard_divisi'];?>">
+                        <option value="<?= $report['hazard_comp'].'-'.$report['hazard_divisi'];?>">
                           <?php $div =  $report['hazard_divisi'];
                           @$divisi = mysqli_fetch_array($conn->query("SELECT * FROM divisi where  divisi_id = '$div'"));
                           echo $divisi['divisi_name'];?>
                         </option>
                         <?php $data = mysqli_query($conn,"select * from divisi order by divisi_name asc");
                         while($row  = mysqli_fetch_array($data)){ ?>  
-                          <option value=<?php echo $row['divisi_comp'].'-'.$row['divisi_id'];?>>
-                            <?php echo $row['divisi_name'];}?> 
+                          <option value=<?= $row['divisi_comp'].'-'.$row['divisi_id'];?>>
+                            <?= $row['divisi_name'];}?> 
                           </option>
                         </select>
                       </div>
@@ -193,8 +193,6 @@ if(@$_GET['act'] == 'detail'){
                  </form>
                <?php } ?>                       
              </td>
-
-
              <tr><th>Uraian</th><td><?= $report['hazard_desc'];?></td> </tr>
              <tr><th>Saran</th><td><?= $report['hazard_solution'];?></td> </tr>
            </tbody>
@@ -249,7 +247,7 @@ if(@$_GET['act'] == 'detail'){
              <label for="exampleFormControlSelect1">Foto (Optional)</label>
              <input name="file" type="file" class="form-control">
            </div><br>
-           <input name="user" value="<?php echo $_SESSION['user_id']?>" hidden/>
+           <input name="user" value="<?= $_SESSION['user_id']?>" hidden/>
            <div class="row">
              <div class="col">
 
@@ -355,7 +353,7 @@ if(@$_GET['act'] == 'detail'){
     $date1 = $_POST['date1'];
     $date2 = $_POST['date2'];
     $comp  = $_POST['comp'];
-    if($_POST['comp'] == 'All')  {
+    if(@$_POST['comp'] == 'All')  {
       if (@$_POST['sebagai'] == 'PIC') {
         include 'filter/transact-hazard-pic-all.php';
       } elseif (@$_POST['sebagai'] == 'Pelapor') {
@@ -370,7 +368,7 @@ if(@$_GET['act'] == 'detail'){
     }
 
   } else {
-#HAZARD REPORT
+#Harmonis
     @$data     = mysqli_query ($conn,"SELECT * FROM hazard 
       LEFT JOIN user on user.user_id = hazard.hazard_user
       LEFT JOIN location on location.loc_id = hazard.hazard_loc
@@ -436,7 +434,7 @@ if(@$_GET['act'] == 'detail'){
             <div class="col-md-12 col-lg-12 col-xl-12">
               <div class="card">
                 <div class="card-header">
-                  <h4>Hazard Report | <i class="fas fa-list"></i></h4>   
+                  <h4>Harmonis | <i class="fas fa-list"></i></h4>   
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -445,7 +443,7 @@ if(@$_GET['act'] == 'detail'){
                         <tr>
                           <th>Status</th>
                           <th style="min-width: 150px;">Tanggal</th>
-                          <th style="min-width: 70px;" >ID Hazard</th>
+                          <th style="min-width: 70px;" >Harmonis</th>
                           <th style="min-width: 70px;" >Judul</th>
                           <th style="min-width: 150px;">Nama Pelapor</th>
                           <th style="min-width: 150px;">Klasifikasi</th>
@@ -500,7 +498,7 @@ if(@$_GET['act'] == 'detail'){
         </div>
 
         <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="summary-tab">
-          <a target="_blank" href="transact-hazard/filter/export.php?d1=<?php echo $date1;?>&d2=<?php echo $date2;?>">
+          <a target="_blank" href="transact-hazard/filter/export.php?d1=<?= $date1;?>&d2=<?= $date2;?>">
             <button class="btn btn-outline-success form-control">
               <i class="fas fa-download"></i> Export Summary
             </button>
@@ -1064,16 +1062,13 @@ if(@$_GET['act'] == 'detail'){
                             }
                           </script>
 
-                          
-
-
                           <!-- UPDATE STATUS-->
                           <script type="text/javascript">
                             $(document).ready(function(){
                               $("#form-hazard-update").on("submit", function(e){
                                 e.preventDefault();
                                 var formData = new FormData(this);
-                                var id = <?php echo $_GET['id'];?>;
+                                var id = <?= $_GET['id'];?>;
                                 document.getElementById("demo").innerHTML = "<center>Please Wait...<br><img src='../assets/super/img/loading.gif' width='100'></center>";
                                 $.ajax({
                                   url  : "action/action.php?action=hazard&id=" + id,
@@ -1084,7 +1079,7 @@ if(@$_GET['act'] == 'detail'){
                                   processData: false,
                                   success : function(data){
                                     $.ajax({
-                                      url: 'transact-hazard/mail_status.php?id=<?php echo $_GET['id']?>',
+                                      url: 'transact-hazard/mail_status.php?id=<?= $_GET['id']?>',
                                       type: 'post',
                                       success: function (response) {
                                         Swal.fire({
@@ -1112,7 +1107,7 @@ if(@$_GET['act'] == 'detail'){
                               $("#form-pic-update").on("submit", function(e){
                                 e.preventDefault();
                                 var formData = new FormData(this);
-                                var id = <?php echo $_GET['id'];?>;
+                                var id = <?= $_GET['id'];?>;
                                 $.ajax({
                                   url  : "action/action.php?action=hazard_pic&id=" + id,
                                   type : "POST",

@@ -83,7 +83,7 @@
 										<tr>
 											<th>Status</th>
 											<th style="min-width: 150px;">Tanggal</th>
-											<th style="min-width: 70px;" >ID Hazard</th>
+											<th style="min-width: 70px;" >ID Harmonis</th>
 											<th style="min-width: 70px;" >Judul</th>
 											<th style="min-width: 150px;">Nama Pelapor</th>
 											<th style="min-width: 150px;">Klasifikasi</th>

@@ -13,7 +13,6 @@ if (@$_POST['search'] != NULL) {
 
 if(@$_GET['act'] == 'detail'){
   @$detail = mysqli_fetch_array($conn->query("SELECT * FROM visitor WHERE visitor.visitor_id = ".$_GET['id'].""));?>
-
   <div class="row ">
     <div class="col-md-8 col-lg-8 col-xl-8">
      <div class="card">

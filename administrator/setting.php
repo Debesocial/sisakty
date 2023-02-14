@@ -52,7 +52,6 @@ if (isset($_POST['submit_password'])){
 		</div>
 	</div>
 
-
 	<!-- FORM VALIDATION -->
 	<script type="text/javascript">
 		document.getElementById("password1").onchange = validatePassword;

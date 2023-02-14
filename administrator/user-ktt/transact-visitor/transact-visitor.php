@@ -1,17 +1,18 @@
 <?php 
-if ($_POST['search'] != NULL) {
-  $header = tanggal_indonesia($_POST['date1']).' s/d '.tanggal_indonesia($_POST['date2']);
+if (@$_POST['search'] != NULL) {
+  $header = tanggal_indonesia(@$_POST['date1']).' s/d '.tanggal_indonesia(@$_POST['date2']);
   $date2  = $_POST['date1'];
   $date1  = $_POST['date2'];
-}elseif ($_POST['nonaktif'] != NULL) {
+}elseif (@$_POST['nonaktif'] != NULL) {
  $header = 'Data Visitor Nonaktif';
-} else {
+}elseif (@$_POST['aktif'] != NULL) {
  $header = 'Data Visitor Aktif';
+} else {
+  $header = 'Data Visitor';
 }
 
 if(@$_GET['act'] == 'detail'){
   @$detail = mysqli_fetch_array($conn->query("SELECT * FROM visitor WHERE visitor.visitor_id = ".$_GET['id'].""));?>
-
   <div class="row ">
     <div class="col-md-8 col-lg-8 col-xl-8">
      <div class="card">
@@ -21,9 +22,9 @@ if(@$_GET['act'] == 'detail'){
       <div class="card-body">
         <center>
           <?php if($detail['visitor_photo'] != ''){?>
-            <img alt="image" src="<?= '../../assets/visitor/FOTO/'.$detail['visitor_photo']?>" width="120" height="150">
+            <img alt="image" src="<?= '../assets/visitor/FOTO/'.$detail['visitor_photo']?>" width="120" height="150">
           <?php }else{?>
-            <img alt="image" src="../../assets/super/img/users/user-1.png" class="rounded-circle author-box-picture" width="120" height="120">
+            <img alt="image" src="../assets/super/img/users/user-1.png" class="rounded-circle author-box-picture" width="120" height="120">
           <?php } ?>
         </center>
         <br><br>
@@ -72,7 +73,7 @@ if(@$_GET['act'] == 'detail'){
           <div class="input-group">
             <input type="text" class="form-control" value="<?= $detail['visitor_identity']?>" disabled="">
             <div class="input-group-append">
-              <a target="_blank" href="<?= '../../assets/visitor/KTP/'.$detail['visitor_identity']?>"><span class="input-group-text">Download</span></a>
+              <a target="_blank" href="<?= '../assets/visitor/KTP/'.$detail['visitor_identity']?>" Download><span class="input-group-text">Download</span></a>
             </div>
           </div>
 
@@ -83,7 +84,7 @@ if(@$_GET['act'] == 'detail'){
             <div class="input-group">
               <input type="text" class="form-control" value="<?= $detail['visitor_permission']?>" disabled="">  
               <div class="input-group-append">
-                <a target="_blank" href="<?= '../../assets/visitor/SURATIJIN/'.$detail['visitor_permission']?>"><span class="input-group-text">Download</span></a>
+                <a target="_blank" href="<?= '../assets/visitor/SURATIJIN/'.$detail['visitor_permission']?>" Download><span class="input-group-text">Download</span></a>
               </div>
             </div>
           <?php } ?>
@@ -139,42 +140,44 @@ if(@$_GET['act'] == 'detail'){
 
           <div class="form-group">
             <label>Berlaku Sampai</label>
-            <input type="date" class="form-control" id="" required placeholder="Sampai Tanggal" name="end">
-          </div><br>
+            <input type="date" class="form-control" id="backdate" required placeholder="Sampai Tanggal" name="end">
+            <script type="text/javascript">
+             document.getElementById("backdate").min = new Date().getFullYear() + "-" +  parseInt(new Date().getMonth() + 1 ) + "-" + new Date().getDate()
+           </script>
+         </div><br>
 
-          <div class="form-group">
-            <h6>Dokumen Pendukung</h6>
-          </div>
+         <div class="form-group">
+          <h6>Dokumen Pendukung</h6>
+        </div>
 
-          <div class="form-group">
-            <label>Kartu Identitas (KTP/SIM)</label>
-            <input type="file" class="form-control" id="" required placeholder="KTP/SIM" name="ktp">
-          </div>
+        <div class="form-group">
+          <label>Kartu Identitas (KTP/SIM)</label>
+          <input type="file" class="form-control" id="" required placeholder="KTP/SIM" name="ktp">
+        </div>
 
-          <div class="form-group">
-            <label>Surat Izin Masuk Site (Optional)</label>
-            <input type="file" class="form-control" id="" placeholder="Surat Izin" name="suratizin">
-          </div>
+        <div class="form-group">
+          <label>Surat Izin Masuk Site (Optional)</label>
+          <input type="file" class="form-control" id="" placeholder="Surat Izin" name="suratizin">
+        </div>
 
-          <div class="form-group">
-            <label>Foto (Optional)</label>
-            <input type="file" class="form-control" id="" placeholder="Foto" name="photo">
-          </div>
+        <div class="form-group">
+          <label>Foto (Optional)</label>
+          <input type="file" class="form-control" id="" placeholder="Foto" name="photo" accept=".jpg,.jpeg,.png" onchange="validateFileType()">
+        </div>
 
-          <div class="form-group"><br>
-            <div class="row">
-              <div class="col-md-6 col-lg-6 col-xl-6">
-                <!-- <button type="reset" class="btn btn-sm btn-basic form-control">Reset</button><br><br> -->
-              </div>
-              <div class="col-md-6 col-lg-6 col-xl-6">
-                <button type="submit" id="visitor-add" name="visitor-add" class="btn btn-sm btn-primary form-control"><i class="fas fa-save"></i> Simpan</button><br><br>
-              </div>
+        <div class="form-group"><br>
+          <div class="row">
+            <div class="col-md-6 col-lg-6 col-xl-6">
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-6">
+              <button type="submit" id="visitor-add" name="visitor-add" class="btn btn-sm btn-primary form-control"><i class="fas fa-save"></i> Simpan</button><br><br>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
+</div>
 </div>
 
 <?php }elseif(@$_GET['act'] == 'edit'){
@@ -219,43 +222,46 @@ if(@$_GET['act'] == 'detail'){
 
           <div class="form-group">
             <label>Berlaku Sampai</label>
-            <input type="date" class="form-control" id="" required placeholder="Sampai Tanggal" name="end" value="<?= $edit['visitor_end'] ?>">
-          </div><br>
+            <input type="date" class="form-control" id="backdate" required placeholder="Sampai Tanggal" name="end" value="<?= $edit['visitor_end'] ?>">
+            <script type="text/javascript">
+             document.getElementById("backdate").min = new Date().getFullYear() + "-" +  parseInt(new Date().getMonth() + 1 ) + "-" + new Date().getDate()
+           </script>
+         </div><br>
 
-          <div class="form-group">
-            <h6>Dokumen Pendukung</h6>
-          </div>
+         <div class="form-group">
+          <h6>Dokumen Pendukung</h6>
+        </div>
 
-          <div class="form-group">
-            <label>Kartu Identitas (KTP/SIM)</label><br>
-            <input type="file" id="files1" name="ktp" value="<?= $edit['visitor_identity'] ?>">
-            <label for="files1"><?= $edit['visitor_identity'] ?></label>
-          </div>
+        <div class="form-group">
+          <label>Kartu Identitas (KTP/SIM)</label><br>
+          <input type="file" id="files1" name="ktp" value="<?= $edit['visitor_identity'] ?>">
+          <label for="files1"><?= $edit['visitor_identity'] ?></label>
+        </div>
 
-          <div class="form-group">
-            <label>Surat Izin Masuk Site</label><br>
-            <input type="file" id="files2" name="suratizin" value="<?= $edit['visitor_permission'] ?>">
-            <label for="files2"><?= $edit['visitor_permission'] ?></label>
-          </div>
+        <div class="form-group">
+          <label>Surat Izin Masuk Site</label><br>
+          <input type="file" id="files2" name="suratizin" value="<?= $edit['visitor_permission'] ?>">
+          <label for="files2"><?= $edit['visitor_permission'] ?></label>
+        </div>
 
-          <div class="form-group">
-            <label>Foto</label><br>
-            <input type="file" id="files3" name="photo" value="<?= $edit['visitor_photo'] ?>" class="hidden"/>
-            <label for="files3"><?= $edit['visitor_photo'] ?></label>
-          </div>
+        <div class="form-group">
+          <label>Foto</label><br>
+          <input type="file" id="files3" name="photo" value="<?= $edit['visitor_photo'] ?>" class="hidden"/ accept=".jpg,.jpeg,.png" onchange="validateFileType()">
+          <label for="files3"><?= $edit['visitor_photo'] ?></label>
+        </div>
 
-          <div class="form-group"><br>
-            <div class="row">
-              <div class="col-12">
-                <input type="hidden" name="id" value="<?= $edit['visitor_id'] ?>"/>
-                <button type="submit" id="visitor-edit" name="visitor-edit" class="btn btn-sm btn-primary form-control"><i class="fas fa-save"></i> Simpan</button><br><br>
-              </div>
+        <div class="form-group"><br>
+          <div class="row">
+            <div class="col-12">
+              <input type="hidden" name="id" value="<?= $edit['visitor_id'] ?>"/>
+              <button type="submit" id="visitor-edit" name="visitor-edit" class="btn btn-sm btn-primary form-control"><i class="fas fa-save"></i> Simpan</button><br><br>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
+</div>
 </div>
 
 <?php } else { ?>
@@ -312,7 +318,12 @@ if(@$_GET['act'] == 'detail'){
           <div class="card">
             <div class="card-header">
               <h4>Data Visitor | <i class="fas fa-list"></i></h4>  
-              <div class="card-header-form"> 
+              <div class="card-header-form">
+                <h4>
+                  <!-- <a href="home.php?v=visitor&act=add" class="btn btn-sm btn-primary "><i class="fas fa-plus-circle"></i> 
+                    Tambah Visitor
+                  </a> -->
+                </h4>     
               </div>    
             </div>
             <div class="card-body">
@@ -322,69 +333,74 @@ if(@$_GET['act'] == 'detail'){
                     <tr>
                      <th>Status</th>
                      <th>Nomor Visitor</th>
-                     <th hidden="">Status</th>
                      <th>Tanggal Pengajuan</th>
                      <th>Berlaku Sampai</th>
                      <th>Nama</th>
                      <th>Perusahaan</th>
                      <th>No. Telp</th>
                      <th>Keperluan</th>
+                     <!-- <th width="20%">Action</th> -->
                    </tr>
                  </thead>
                  <tbody>
-                  <?php 
-                  if($_POST['berdasarkan'] == 'pengajuan') {
+                  <?php
+                  if(@$_POST['berdasarkan'] == 'pengajuan') {
                     $data = mysqli_query($conn,"SELECT * FROM visitor 
                       WHERE visitor_date <= '$date1'
                       AND visitor_date >= '$date2'
                       ORDER BY visitor_id DESC");
-                  }elseif($_POST['berdasarkan'] == 'berlaku') {
+                  }elseif(@$_POST['berdasarkan'] == 'berlaku') {
                     $data = mysqli_query($conn,"SELECT * FROM visitor 
                       WHERE visitor_end <= '$date1'
                       AND visitor_end >= '$date2'
                       ORDER BY visitor_id DESC");
-                  }elseif($_POST['nonaktif'] == 'nonaktif') {
+                  }elseif(@$_POST['aktif'] == 'aktif') {
+                    $data = mysqli_query($conn,"SELECT * FROM visitor 
+                      WHERE visitor_status = 'Aktif'
+                      ORDER BY visitor_id DESC");
+                  }elseif(@$_POST['nonaktif'] == 'nonaktif') {
                     $data = mysqli_query($conn,"SELECT * FROM visitor 
                       WHERE visitor_status = 'Nonaktif'
                       ORDER BY visitor_id DESC");
                   }else{
                     $data = mysqli_query($conn,"SELECT * FROM visitor 
-                      WHERE visitor_status = 'Aktif'
                       ORDER BY visitor_id DESC");
                   }
                   while($row  = mysqli_fetch_array($data)){ ?> 
                     <tr>
                       <td>
                        <?php if($row['visitor_status'] !='Aktif'){
-                        echo'<span class="badge badge-pill badge-secondary">&nbsp;Nonaktif</span>';
+                        echo'<span class="badge badge-pill badge-secondary">Nonaktif</span>';
                       } else {
                         echo'<span class="badge badge-pill badge-success">&emsp;Aktif&emsp;</span>';
                       } ?>
                     </td>
                     <td><?= $row['visitor_no'] ?></td>
-                    <td hidden>
-                     <?php if($row['visitor_status'] !='Aktif'){
-                      echo'<span class="badge badge-pill badge-secondary">&nbsp;Nonaktif</span>';
-                    } else {
-                      echo'<span class="badge badge-pill badge-success">&emsp;Aktif&emsp;</span>';
-                    } ?>
-                  </td>
-                  <td><?= date('d/m/Y',strtotime($row['visitor_date']))?></td>
-                  <td><?= date('d/m/Y',strtotime($row['visitor_end']))?></td>
-                  <td><a href="home.php?v=visitor&act=detail&id=<?= $row['visitor_id']; ?>"><?= $row['visitor_name'] ?></a></td>
-                  <td><?= $row['visitor_company'] ?></td>
-                  <td><?= $row['visitor_phone'] ?></td>
-                  <td><?= $row['visitor_needs'] ?></td>
-                </tr>
-              <?php } ?>
-            </tbody>
-          </table>
+                    <td><?= date('d/m/Y',strtotime($row['visitor_date']))?></td>
+                    <td><?= date('d/m/Y',strtotime($row['visitor_end']))?></td>
+                    <td><a href="home.php?v=visitor&act=detail&id=<?= $row['visitor_id']; ?>"><?= $row['visitor_name'] ?></a></td>
+                    <td><?= $row['visitor_company'] ?></td>
+                    <td><?= $row['visitor_phone'] ?></td>
+                    <td><?= $row['visitor_needs'] ?></td>
+                    <!-- <td>
+                      <?php if($row['visitor_status'] == 'Aktif'){?>
+                        <a href="home.php?v=visitor&act=edit&id=<?= $row['visitor_id']; ?>" class="btn btn-outline-success"><i class="fas fa-edit"></i>Edit</a>
+                        <a href="" data-toggle="modal" class="btn btn-outline-danger ModalClick" data-id="<?= $row['visitor_no']; ?>" data-target="#myModal"><i class="fas fa-sign-out-alt"></i>Nonaktif</a>
+                      <?php } else{ ?>
+                        <a href="#" class="btn btn-outline-secondary" style="color:#cdd3d8;border-color:#cdd3d8;"><i class="fas fa-edit"></i>Edit</a>
+                        <a href="#"class="btn btn-outline-secondary"  style="color:#cdd3d8;border-color:#cdd3d8;"><i class="fas fa-times"></i>Nonaktif
+                        <?php }?>
+                      </td> -->
+                    </tr>
+                  <?php } ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 </div>
 <?php } ?>
 
@@ -405,7 +421,7 @@ if(@$_GET['act'] == 'detail'){
         <form id="form-visitor-nonaktif">
           <input type="text" name="no" id="no" hidden="" />
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-          <button type="submit" id="visitor-nonaktif" name="visitor-nonaktif" class="btn btn-danger">&nbsp;Ya, Nonaktif&nbsp;</button>
+          <button type="submit" id="visitor-nonaktif" name="visitor-nonaktif" class="btn btn-danger">Ya, Nonaktif</button>
         </form>
       </div>
     </div>
@@ -506,4 +522,18 @@ if(@$_GET['act'] == 'detail'){
     var passedID = $(this).data('id');
     $('input:text').val(passedID);
   });
+</script>
+
+<script type="text/javascript">
+ let file = document.getElementById("fileName");
+ function validateFileType(){
+  var fileName = file.value,
+  idxDot = fileName.lastIndexOf(".") + 1,
+  extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+  if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
+  }else{
+   alert("Only jpg/jpeg and png files are allowed!");
+   file.value = "";
+ }
+}
 </script>

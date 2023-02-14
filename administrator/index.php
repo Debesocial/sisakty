@@ -26,7 +26,6 @@
 				<div class="row">
 					<div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
 						<div class="login-brand">
-							<!-- <b>EHS Application</b> -->
 							<img src="../assets/img/logor.png" width="30%">
 						</div>
 						<div class="card card-primary">
@@ -135,6 +134,7 @@
 		</div>
 	</div>
 </section>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">

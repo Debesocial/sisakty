@@ -12,30 +12,30 @@
     where mpermit_status_approval = 'Closed'
     and mpermit_pic = ".$_SESSION['user_comp'].""));
 
-  if ($_POST['today'] != NULL) {
+  if (@$_POST['today'] != NULL) {
     $header = '<strong>'.tanggal_indonesia(date('Y-m-d')).'</strong>';
     $date1  = date("Y-m-d");
     $date2  = date("Y-m-d");
-  } elseif ($_POST['month'] != NULL) {
+  } elseif (@$_POST['month'] != NULL) {
     $header = '<strong>'.tanggal_indonesia(date('Y-m')).'</strong>';
     $date1  = date("Y-m-31");
     $date2  = date("Y-m-01");
-  } elseif ($_POST['year'] != NULL) {
+  } elseif (@$_POST['year'] != NULL) {
     $header = '<strong> Tahun'.tanggal_indonesia(date("Y")).'</strong>';
     $date1  = date("Y-12-31");
     $date2  = date("Y-01-01");
-  } elseif ($_POST['search'] != NULL) {
+  } elseif (@$_POST['search'] != NULL) {
     $header = '<strong>'.tanggal_indonesia($_POST['date1']).' s/d '.tanggal_indonesia($_POST['date2']).'</strong>';
     $date1  = $_POST['date1'];
     $date2  = $_POST['date2'];
 
-  } elseif($_POST['open'] != null) {
+  } elseif(@$_POST['open'] != null) {
     $header = '<strong>Menunggu Approval Safety MIP <small> ( <i>Total : '.$open['total'].'</i>&nbsp; )</small></strong>';
-  } elseif($_POST['progress'] != null) {
+  } elseif(@$_POST['progress'] != null) {
     $header = '<strong>Menunggu Approval KTT<small> ( <i>Total : '.$progress['total'].'</i>&nbsp; )</small></strong>';
-  } elseif($_POST['reject'] != null) {
+  } elseif(@$_POST['reject'] != null) {
     $header = '<strong>Pengajuan yang Ditolak <small> ( <i>Total : '.$reject['total'].'</i>&nbsp; )</small></strong>';
-  } elseif($_POST['closed'] != null) {
+  } elseif(@$_POST['closed'] != null) {
     $header = '<strong>Pengajuan yang Disetujui<small> ( <i>Total : '.$closed['total'].'</i>&nbsp; )</small></strong>';
 
   } else {
@@ -618,20 +618,24 @@
                     <td><?= $row['comp_name']?></td>
                     <td style="text-align: right">
 
-                      <?php if($row['mpermit_approval_ktt'] != '' || $row['mpermit_approval_safety'] != '' || $row['mpermit_status_approval'] == 'Cancel') {?>
-                        <button class="btn btn-outline-secondary" style="color:#cdd3d8;border-color:#cdd3d8;">&nbsp;
-                         <i class="fas fa-edit"></i> Edit&nbsp;
-                       </button>
-                       <button class="btn btn-outline-secondary" style="color:#cdd3d8;border-color:#cdd3d8;">&nbsp;
-                         <i class="fas fa-times"></i> Cancel&nbsp;
-                       </button>
+                      <?php if(
+                        $row['mpermit_submitter']       == 'System' ||
+                        $row['mpermit_approval_ktt']    != '' || 
+                        $row['mpermit_approval_safety'] != '' || 
+                        $row['mpermit_status_approval'] == 'Cancel') {?>
+                          <button class="btn btn-outline-secondary" style="color:#cdd3d8;border-color:#cdd3d8;">&nbsp;
+                           <i class="fas fa-edit"></i> Edit&nbsp;
+                         </button>
+                         <button class="btn btn-outline-secondary" style="color:#cdd3d8;border-color:#cdd3d8;">&nbsp;
+                           <i class="fas fa-times"></i> Cancel&nbsp;
+                         </button>
 
-                     <?php } else { 
-                       if($row['mpermit_submitter'] == 'Mitra Kerja' ) {?>
-                        <a href="home.php?v=mpermit&act=edit&id=<?= $row['mpermit_id']; ?>" class="btn btn-outline-success">&nbsp;<i class="fas fa-edit"></i> Edit&nbsp;</a>
-                        <a href="" data-toggle="modal" class="btn btn-outline-danger MClick2" data-id="<?= $row['mpermit_id']; ?>" data-target="#cancel">&nbsp;<i class="fas fa-times"></i> Cancel&nbsp;</a>
-                      <?php }} ?>
-
+                       <?php } else { 
+                         if($row['mpermit_submitter'] == 'Mitra Kerja' ) {?>
+                          <a href="home.php?v=mpermit&act=edit&id=<?= $row['mpermit_id']; ?>" class="btn btn-outline-success">&nbsp;<i class="fas fa-edit"></i> Edit&nbsp;</a>
+                          <a href="" data-toggle="modal" class="btn btn-outline-danger MClick2" data-id="<?= $row['mpermit_id']; ?>" data-target="#cancel">&nbsp;<i class="fas fa-times"></i> Cancel&nbsp;</a>
+                        <?php }
+                      } ?>
                     </td>
                   </tr>
                 <?php } ?>

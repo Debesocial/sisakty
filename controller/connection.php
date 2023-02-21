@@ -5,4 +5,4 @@ $conn = mysqli_connect("mandiricoal.net","mandiricoal","Mandiricoal2022!","sisak
 date_default_timezone_set('Asia/Jakarta');
 if (mysqli_connect_errno()){
 	echo "Filed Conncection : " . mysqli_connect_error();
-}?>
+}

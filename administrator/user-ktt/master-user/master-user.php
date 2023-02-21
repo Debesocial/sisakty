@@ -1175,13 +1175,13 @@
 		<div class="card">
 			<div class="card-header">
 				<h4>Data User | <i class="fas fa-list"></i> </h4>
-				<div class="card-header-form">
+				<!-- <div class="card-header-form">
 					<h4>
 						<a href="home.php?v=muser&act=add" class="btn btn-primary "><i class="fas fa-plus-circle"></i> 
 							Tambah Data User
 						</a>
 					</h4>			
-				</div>				
+				</div> -->				
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">

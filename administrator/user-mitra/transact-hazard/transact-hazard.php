@@ -1,13 +1,13 @@
 <?php 
-if ($_POST['today'] != NULL) {
+if (@$_POST['today'] != NULL) {
   $header = tanggal_indonesia(date('Y-m-d'));
   $date2  = date("Y-m-d");
   $date1  = date("Y-m-d");
-} elseif ($_POST['month'] != NULL) {
+} elseif (@$_POST['month'] != NULL) {
   $header = tanggal_indonesia(date('Y-m'));
   $date2  = date("Y-m-31");
   $date1  = date("Y-m-01");
-} elseif ($_POST['year'] != NULL) {
+} elseif (@$_POST['year'] != NULL) {
   $header = 'Tahun'.tanggal_indonesia(date("Y"));
   $date2  = date("Y-12-31");
   $date1  = date("Y-01-01");

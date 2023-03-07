@@ -120,17 +120,17 @@ if(@$_GET['act'] == 'detail'){
 
           <div class="form-group">
             <label>Nama Visitor</label>
-            <input type="text" class="form-control" id="" required placeholder="Nama Visitor" name="name">
+            <input type="text" class="form-control" id="" required placeholder="Nama Visitor" name="name" minlength="4">
           </div>
 
           <div class="form-group">
             <label>Perusahaan</label>
-            <input type="text" class="form-control" id="" required placeholder="Perusahaan" name="company">
+            <input type="text" class="form-control" id="" required placeholder="Perusahaan" name="company" minlength="3">
           </div>
 
           <div class="form-group">
             <label>No. Telp</label>
-            <input type="number" class="form-control" id="" required placeholder="No. Telp" name="phone">
+            <input type="number" class="form-control" id="" required placeholder="No. Telp" name="phone" minlength="10">
           </div>
 
           <div class="form-group">
@@ -203,17 +203,17 @@ if(@$_GET['act'] == 'detail'){
 
           <div class="form-group">
             <label>Nama Visitor</label>
-            <input type="text" class="form-control" id="" required placeholder="Nama Visitor" name="name" value="<?= $edit['visitor_name'] ?>">
+            <input type="text" class="form-control" id="" required placeholder="Nama Visitor" name="name" value="<?= $edit['visitor_name'] ?>" minlength="4">
           </div>
 
           <div class="form-group">
             <label>Perusahaan</label>
-            <input type="text" class="form-control" id="" required placeholder="Perusahaan" name="company" value="<?= $edit['visitor_company'] ?>">
+            <input type="text" class="form-control" id="" required placeholder="Perusahaan" name="company" value="<?= $edit['visitor_company'] ?>" minlength="3">
           </div>
 
           <div class="form-group">
             <label>No. Telp</label>
-            <input type="number" class="form-control" id="" required placeholder="No. Telp" name="phone" value="<?= $edit['visitor_phone'] ?>">
+            <input type="number" class="form-control" id="" required placeholder="No. Telp" name="phone" value="<?= $edit['visitor_phone'] ?>" minlength="10">
           </div>
 
           <div class="form-group">

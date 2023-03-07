@@ -18,17 +18,6 @@
 	AND user.user_comp  = ".$_SESSION['user_comp']."
 	and user.user_divisi  = ".$_SESSION['user_divisi']."");
 
-
-@$pic = mysqli_query($conn,"SELECT * FROM user
-	LEFT JOIN level ON level.level_id = user.user_level
-	LEFT JOIN departement ON departement.dept_id = user.user_dept
-	LEFT JOIN divisi ON divisi.divisi_id = user.user_divisi
-	LEFT JOIN company ON company.comp_id = user.user_comp
-	WHERE user.user_pic != 'STY' 
-	AND user.user_pic = 'Y'
-	and user.user_comp  = ".$_SESSION['user_comp']."
-	and user.user_divisi  = ".$_SESSION['user_divisi']."");
-
 @$area = mysqli_query($conn,"SELECT * FROM area_mpermit 
 	INNER JOIN area ON  area.area_id = area_mpermit.area_mpermit_id 
 	WHERE area_mpermit_user = '$id'"); 
@@ -738,7 +727,7 @@
 																echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 															} elseif($minepermit['mpermit_office'] == 'rest'){
 																echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-															} elseif($minepermit['mpermit_office'] == 'forbiden'){
+															} elseif($minepermit['mpermit_office'] == 'forbidden'){
 																echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
 															}?>
 														</td>
@@ -750,7 +739,7 @@
 																echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 															} elseif($minepermit['mpermit_mine'] == 'rest'){
 																echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-															} elseif($minepermit['mpermit_mine'] == 'forbiden'){
+															} elseif($minepermit['mpermit_mine'] == 'forbidden'){
 																echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
 															}?>
 														</td>
@@ -762,7 +751,7 @@
 																echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 															} elseif($minepermit['mpermit_camp'] == 'rest'){
 																echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-															} elseif($minepermit['mpermit_camp'] == 'forbiden'){
+															} elseif($minepermit['mpermit_camp'] == 'forbidden'){
 																echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
 															}?>
 														</td>
@@ -774,7 +763,7 @@
 																echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 															} elseif($minepermit['mpermit_workshop'] == 'rest'){
 																echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-															} elseif($minepermit['mpermit_workshop'] == 'forbiden'){
+															} elseif($minepermit['mpermit_workshop'] == 'forbidden'){
 																echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
 															}?>
 														</td>
@@ -786,7 +775,7 @@
 																echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 															} elseif($minepermit['mpermit_cpp'] == 'rest'){
 																echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-															} elseif($minepermit['mpermit_cpp'] == 'forbiden'){
+															} elseif($minepermit['mpermit_cpp'] == 'forbidden'){
 																echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
 															}?>
 														</td>
@@ -798,7 +787,7 @@
 																echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 															} elseif($minepermit['mpermit_lab'] == 'rest'){
 																echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-															} elseif($minepermit['mpermit_lab'] == 'forbiden'){
+															} elseif($minepermit['mpermit_lab'] == 'forbidden'){
 																echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
 															}?>
 														</td>
@@ -810,7 +799,7 @@
 																echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 															} elseif($minepermit['mpermit_exploration'] == 'rest'){
 																echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-															} elseif($minepermit['mpermit_exploration'] == 'forbiden'){
+															} elseif($minepermit['mpermit_exploration'] == 'forbidden'){
 																echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
 															}?>
 														</td>
@@ -822,7 +811,7 @@
 																echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 															} elseif($minepermit['mpermit_jetty'] == 'rest'){
 																echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-															} elseif($minepermit['mpermit_jetty'] == 'forbiden'){
+															} elseif($minepermit['mpermit_jetty'] == 'forbidden'){
 																echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
 															}?>
 														</td>
@@ -1084,7 +1073,7 @@
 													echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 												} elseif($minepermit_detail['mpermit_office'] == 'rest'){
 													echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-												} elseif($minepermit_detail['mpermit_office'] == 'forbiden'){
+												} elseif($minepermit_detail['mpermit_office'] == 'forbidden'){
 													echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
 												}?>
 											</td>
@@ -1096,7 +1085,7 @@
 													echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 												} elseif($minepermit_detail['mpermit_mine'] == 'rest'){
 													echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-												} elseif($minepermit_detail['mpermit_mine'] == 'forbiden'){
+												} elseif($minepermit_detail['mpermit_mine'] == 'forbidden'){
 													echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
 												}?>
 											</td>
@@ -1108,7 +1097,7 @@
 													echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 												} elseif($minepermit_detail['mpermit_camp'] == 'rest'){
 													echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-												} elseif($minepermit_detail['mpermit_camp'] == 'forbiden'){
+												} elseif($minepermit_detail['mpermit_camp'] == 'forbidden'){
 													echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
 												}?>
 											</td>
@@ -1120,7 +1109,7 @@
 													echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 												} elseif($minepermit_detail['mpermit_workshop'] == 'rest'){
 													echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-												} elseif($minepermit_detail['mpermit_workshop'] == 'forbiden'){
+												} elseif($minepermit_detail['mpermit_workshop'] == 'forbidden'){
 													echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
 												}?>
 											</td>
@@ -1132,7 +1121,7 @@
 													echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 												} elseif($minepermit_detail['mpermit_cpp'] == 'rest'){
 													echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-												} elseif($minepermit_detail['mpermit_cpp'] == 'forbiden'){
+												} elseif($minepermit_detail['mpermit_cpp'] == 'forbidden'){
 													echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
 												}?>
 											</td>
@@ -1144,7 +1133,7 @@
 													echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 												} elseif($minepermit_detail['mpermit_lab'] == 'rest'){
 													echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-												} elseif($minepermit_detail['mpermit_lab'] == 'forbiden'){
+												} elseif($minepermit_detail['mpermit_lab'] == 'forbidden'){
 													echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
 												}?>
 											</td>
@@ -1156,7 +1145,7 @@
 													echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 												} elseif($minepermit_detail['mpermit_exploration'] == 'rest'){
 													echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-												} elseif($minepermit_detail['mpermit_exploration'] == 'forbiden'){
+												} elseif($minepermit_detail['mpermit_exploration'] == 'forbidden'){
 													echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
 												}?>
 											</td>
@@ -1168,7 +1157,7 @@
 													echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 												} elseif($minepermit_detail['mpermit_jetty'] == 'rest'){
 													echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-												} elseif($minepermit_detail['mpermit_jetty'] == 'forbiden'){
+												} elseif($minepermit_detail['mpermit_jetty'] == 'forbidden'){
 													echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
 												}?>
 											</td>
@@ -1264,50 +1253,6 @@
 											<!-- <td>
 												<a href="home.php?v=muser&act=update&id=<?php echo $row['user_id']; ?>" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
 											</td> -->
-										</tr>
-									<?php } ?>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-12 col-lg-12 col-xl-12">
-				<div class="card">
-					<div class="card-header">
-						<h4>Data PIC | <i class="fas fa-list"></i> </h4>
-					</div>
-					<div class="card-body">
-						<div class="table-responsive">
-							<table class="table table-striped table-hover" id="save-stage-accident" style="width:100%;">
-								<thead>
-									<tr>
-										<th>Akses Apps</th>
-										<th>NIK</th>
-										<th>Nama</th>
-										<th>Divisi</th>
-										<th>Perusahaan</th>
-										<th>No. Telp</th>
-										<th>Email</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php while($row  = mysqli_fetch_array($pic)){ ?> 
-										<tr>
-											<td>
-												<?php if($row['user_access'] !='Y'){
-													echo'<span class="badge badge-pill badge-secondary">&nbsp;Nonaktif</span>';
-												} else {
-													echo'<span class="badge badge-pill badge-success">&emsp;Aktif&emsp;</span>';
-												} ?>
-											</td>
-											<td><?= $row['user_nik']; ?></td>
-											<td><a href="home.php?v=muser&act=detail&id=<?= $row['user_id']; ?>" class=""><?= $row['user_name']; ?></a></td>
-											<td><?= $row['divisi_name']; ?></td>
-											<td><?= $row['comp_name']; ?></td>
-											<td><?= $row['user_phone']; ?></td>
-											<td><?= $row['user_email']; ?></td>
 										</tr>
 									<?php } ?>
 								</tbody>

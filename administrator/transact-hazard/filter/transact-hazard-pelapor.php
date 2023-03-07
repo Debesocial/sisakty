@@ -27,6 +27,7 @@
 	LEFT JOIN divisi ON divisi.divisi_id = user.user_divisi
 	LEFT JOIN company ON company.comp_id = user.user_comp
 	WHERE user.user_comp = '$comp'  
+	AND user.user_status = 'STAFF'
 	ORDER BY user.user_name ASC ");
 
 #BERDASARKAN STATUS

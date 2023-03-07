@@ -101,10 +101,11 @@ function tanggal_indonesia($tanggal){
               <span class="d-sm-none d-lg-inline-block"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
-              <div class="dropdown-title">Hallo Admin</div>
-              <div class="dropdown-divider"></div>
-              <a id="logout" onclick="logout()" href="#" class="dropdown-item has-icon text-danger"> 
-                <i class="fas fa-sign-out-alt"></i> Logout
+              <a class="nav-link count-indicator" style="color: #343a40;" href="home.php?v=setting">
+                <i class="fas fa-cog"></i> Pengaturan
+              </a>
+              <a class="nav-link count-indicator" id="logout" style="color: #343a40;" onclick="logout()" href="" data-toggle="dropdown">
+                <i class="fas fa-sign-out-alt"></i> Keluar
               </a>
             </div>
           </li>
@@ -131,7 +132,7 @@ function tanggal_indonesia($tanggal){
             </li>
             <li class="dropdown">
               <a href="home.php?v=hazard">
-                <i class="fas fa-exclamation-triangle"></i><span>Hazard Report</span>
+                <i class="fas fa-exclamation-triangle"></i><span>Harmonis</span>
               </a>
             </li>
             <li class="dropdown">

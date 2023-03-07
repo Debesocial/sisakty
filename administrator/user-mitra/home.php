@@ -99,13 +99,14 @@ function tanggal_indonesia($tanggal){
                 <u>Hallo Admin ( HSE - <?php echo $comp_admin['comp_name'] ?>)</u>&nbsp;<i class="fas fa-user"></i>
                 <span class="d-sm-none d-lg-inline-block"></span>
               </a>
-              <div class="dropdown-menu dropdown-menu-right pullDown">
-                <div class="dropdown-title">Hallo Admin</div>
-                <div class="dropdown-divider"></div>
-                <a id="logout" onclick="logout()" href="#" class="dropdown-item has-icon text-danger"> 
-                  <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
-              </div>
+            <div class="dropdown-menu dropdown-menu-right pullDown">
+              <a class="nav-link count-indicator" style="color: #343a40;" href="home.php?v=setting">
+                <i class="fas fa-cog"></i> Pengaturan
+              </a>
+              <a class="nav-link count-indicator" id="logout" style="color: #343a40;" onclick="logout()" href="" data-toggle="dropdown">
+                <i class="fas fa-sign-out-alt"></i> Keluar
+              </a>
+            </div>
             </li>
           </ul>
         </nav>

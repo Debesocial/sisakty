@@ -24,6 +24,7 @@
 	LEFT JOIN departement ON departement.dept_id = user.user_dept
 	LEFT JOIN divisi ON divisi.divisi_id = user.user_divisi
 	LEFT JOIN company ON company.comp_id = user.user_comp 
+	AND user.user_status = 'STAFF'
 	WHERE user.user_pic != 'X' ORDER BY user.user_name ASC ");
 
 #BERDASARKAN STATUS

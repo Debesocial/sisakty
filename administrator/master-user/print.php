@@ -15,7 +15,7 @@ $pdf = new FPDF('L', 'mm', array(120, 200));
 $pdf->AddPage();
 $pdf->SetTextColor(9999);
 $pdf->SetXY(35, 25);
-$pdf->Image('../../assets/images/BACKGROUNDXXX.jpg', 30, 10, 140, 90);
+$pdf->Image('../../assets/images/BACKGROUND-FIX.jpg', 30, 10, 140, 90);
 $pdf->Image('../../assets/minepermit/FOTO/'.$minepermit['mpermit_photo'], $pdf->GetX(), $pdf->GetY(), 15);
 
 // HEADER FRONT
@@ -26,8 +26,8 @@ $pdf->Cell(44, 7, 'MINE PERMIT CARD', 0, 4, 'L');
 $pdf->SetFont('Arial', '', 5);
 $pdf->SetXY(45, 14.5);
 $pdf->Cell(29.5, 7, 'PT. MANDIRI INTIPERKASA', 0, 4, 'L');
-$pdf->SetXY(36, 17);
-$pdf->Cell(29.5, 7, 'SITE KRASSI, SEMBAKUNG - NUNUKAN - KALTARA', 0, 4, 'L');
+$pdf->SetXY(41.5, 17);
+$pdf->Cell(29.5, 7, 'SITE KRASSI - KALIMANTAN UTARA', 0, 4, 'L');
 $pdf->Line(33, 22.5, 84, 22.5);
 
 // DETAIL INFORMATION
@@ -227,7 +227,7 @@ $pdf->Cell(9.5, 7, "5. Penyalahgunaan dan ketidak disiplinan terhadap pemakaian 
 $pdf->SetXY(116.5, 66);
 $pdf->Cell(9.5, 7, "    Mine Permit Card bisa dikenakan sanksi yang tercantum  ", 0, 4, 'L');
 $pdf->SetXY(116.5, 69);
-$pdf->Cell(9.5, 7, "    pada Safety Golden Rules PT. MIP", 0, 4, 'L');
+$pdf->Cell(9.5, 7, "    pada Mandiri's Golden Rules PT. MIP", 0, 4, 'L');
 
 $pdf->SetXY(116.5, 74);
 $pdf->Cell(9.5, 7, "6. Apabila Mine Permit Card hilang, maka untuk membuat Mine", 0, 4, 'L');
@@ -236,11 +236,12 @@ $pdf->Cell(9.5, 7, "    Permit Card baru dikenakan biaya sebesar Rp. 100.000,- "
 
 $pdf->SetFont('Arial', '', 7);
 $pdf->Image('../../assets/images/LOGOX.png', 63.2, 51, 20, 14);
-$pdf->Image('../../assets/images/LOGOX.png', 120, 86, 12, 9);
+// $pdf->Image('../../assets/images/LOGOX.png', 120, 86, 12, 9);
 $pdf->SetFont('Arial', '', 7);
-$pdf->Image('../../assets/images/BARCODE.png', 135, 83, 15, 15);
+$pdf->Image('../../assets/images/BARCODE.png', 123, 84, 10, 10);
 $pdf->SetFont('Arial', '', 7);
-$pdf->Image('../../assets/images/SAFETY.png', 155, 86, 9, 9);
+$pdf->Image('../../assets/images/SAFETY.png', 152, 83.5, 11, 11);
 
 $pdf->Output();
 // }
+?>

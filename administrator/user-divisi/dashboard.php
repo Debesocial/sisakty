@@ -124,7 +124,7 @@
 					</div>
 
 					<div class="col-6">
-						<h6>HAZARD REPORT <small>( Berdasarkan Status Temuan <?=date("Y")?> )</small></h6><hr>
+						<h6>HARMONIS <small>( Berdasarkan Status Temuan <?=date("Y")?> )</small></h6><hr>
 
 						<?php
 						$date1 = date("Y-01-01");
@@ -274,7 +274,7 @@
 							<div class="col-6">
 								<div class="card ">
 									<div class="card-header">
-										<h4>Hazard Report Terbaru</h4>
+										<h4>Harmonis Terbaru</h4>
 									</div>
 									<div class="card-body">
 										<div class="row">
@@ -314,7 +314,7 @@
 															<?php } ?>
 														</tbody>
 													</table>
-													<i>* Untuk informasi lebih lengkap dapat di akses pada menu <strong>'HAZARD REPORT'</strong>.</i>
+													<i>* Untuk informasi lebih lengkap dapat di akses pada menu <strong>'HARMONIS'</strong>.</i>
 												</div>
 											</div>
 										</div>

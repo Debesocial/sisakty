@@ -22,9 +22,9 @@ if(@$_GET['act'] == 'detail'){
       <div class="card-body">
         <center>
           <?php if($detail['visitor_photo'] != ''){?>
-            <img alt="image" src="<?= '../assets/visitor/FOTO/'.$detail['visitor_photo']?>" width="120" height="150">
+            <img alt="image" src="<?= '../../assets/visitor/FOTO/'.$detail['visitor_photo']?>" width="120" height="150">
           <?php }else{?>
-            <img alt="image" src="../assets/super/img/users/user-1.png" class="rounded-circle author-box-picture" width="120" height="120">
+            <img alt="image" src="../../assets/super/img/users/user-1.png" class="rounded-circle author-box-picture" width="120" height="120">
           <?php } ?>
         </center>
         <br><br>
@@ -73,7 +73,7 @@ if(@$_GET['act'] == 'detail'){
           <div class="input-group">
             <input type="text" class="form-control" value="<?= $detail['visitor_identity']?>" disabled="">
             <div class="input-group-append">
-              <a target="_blank" href="<?= '../assets/visitor/KTP/'.$detail['visitor_identity']?>" Download><span class="input-group-text">Download</span></a>
+              <a target="_blank" href="<?= '../../assets/visitor/KTP/'.$detail['visitor_identity']?>" Download><span class="input-group-text">Download</span></a>
             </div>
           </div>
 
@@ -84,7 +84,7 @@ if(@$_GET['act'] == 'detail'){
             <div class="input-group">
               <input type="text" class="form-control" value="<?= $detail['visitor_permission']?>" disabled="">  
               <div class="input-group-append">
-                <a target="_blank" href="<?= '../assets/visitor/SURATIJIN/'.$detail['visitor_permission']?>" Download><span class="input-group-text">Download</span></a>
+                <a target="_blank" href="<?= '../../assets/visitor/SURATIJIN/'.$detail['visitor_permission']?>" Download><span class="input-group-text">Download</span></a>
               </div>
             </div>
           <?php } ?>

@@ -60,15 +60,15 @@
 							<div class="col-md-4 col-lg-4 col-xl-4">
 								<div class="form-group">
 									<label>NIK / User ID</label>
-									<input type="text" class="form-control" id="" required placeholder="NIK" name="nik">
+									<input type="text" class="form-control" id="" required placeholder="NIK" name="nik" minlength="4">
 								</div>
 								<div class="form-group">
 									<label>Password</label>
-									<input type="Password" class="form-control" id="" required placeholder="Password" name="password">
+									<input type="Password" class="form-control" id="" required placeholder="Password" name="password" minlength="6">
 								</div>
 								<div class="form-group">
 									<label>Nama Lengkap</label>
-									<input type="text" class="form-control" id="" required placeholder="Nama Lengkap" name="name">
+									<input type="text" class="form-control" id="" required placeholder="Nama Lengkap" name="name" minlength="4">
 								</div>
 								<div class="form-group">
 									<label>Tanggal Lahir</label>
@@ -188,17 +188,17 @@
 								<div class="form-group">
 									<label>NIK / User ID</label>
 									<input type="text" class="form-control" id="" required placeholder="NIK" name="nik" 
-									value="<?= $userupdate['user_nik']?>">
+									value="<?= $userupdate['user_nik']?>"minlength="4">
 								</div>
 								<div class="form-group">
 									<label>Password</label>
 									<input type="Password" class="form-control" id="" required placeholder="Password" name="password"
-									value="<?= base64_decode($userupdate['user_password'])?>">
+									value="<?= base64_decode($userupdate['user_password'])?>" minlength="6">
 								</div>
 								<div class="form-group">
 									<label>Nama Lengkap</label>
 									<input type="text" class="form-control" id="" required placeholder="Nama Lengkap" name="name"
-									value="<?= $userupdate['user_name']?>">
+									value="<?= $userupdate['user_name']?>" minlength="4">
 								</div>
 								<div class="form-group">
 									<label>Tanggal Lahir</label>
@@ -545,9 +545,30 @@
 
 												<hr>
 												<div class="form-group col-5">
-													<a href="master-user/print.php?mP=<?=base64_encode(@$minepermit['mpermit_id']);?>"  target="_blank" class="btn btn-sm btn-outline-primary">
+													<a data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-outline-primary">
 														<i class="fa fa-print"></i> Print Mine Permit
 													</a>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                      <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                          <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Print Mine Permit</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                              <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                          </div>
+                                                          <div class="modal-body">
+                                                            Apakah anda yakin akan mencetak Mine Permit ?
+                                                          </div>
+                                                          <!--href="master-user/print.php?mP=<?=base64_encode(@$minepermit['mpermit_id']);?>"-->
+                                                          <div class="modal-footer">
+                                                            <a href="master-user/print.php?mP=<?=base64_encode(@$minepermit['mpermit_id']);?>" type="button" class="btn btn-primary">&emsp;Iya&emsp;</a>
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
 												</div>
 											</div><br>
 
@@ -724,8 +745,8 @@
 															echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 														} elseif(@$minepermit['mpermit_office'] == 'rest'){
 															echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-														} elseif(@$minepermit['mpermit_office'] == 'forbiden'){
-															echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
+														} elseif(@$minepermit['mpermit_office'] == 'forbidden'){
+															echo'<i style="color:Red;" class="fa fa-circle"></i> Forbidden';
 														}?>
 													</td>
 												</tr>
@@ -736,8 +757,8 @@
 															echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 														} elseif(@$minepermit['mpermit_mine'] == 'rest'){
 															echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-														} elseif(@$minepermit['mpermit_mine'] == 'forbiden'){
-															echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
+														} elseif(@$minepermit['mpermit_mine'] == 'forbidden'){
+															echo'<i style="color:Red;" class="fa fa-circle"></i> Forbidden';
 														}?>
 													</td>
 												</tr>
@@ -748,8 +769,8 @@
 															echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 														} elseif(@$minepermit['mpermit_camp'] == 'rest'){
 															echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-														} elseif(@$minepermit['mpermit_camp'] == 'forbiden'){
-															echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
+														} elseif(@$minepermit['mpermit_camp'] == 'forbidden'){
+															echo'<i style="color:Red;" class="fa fa-circle"></i> Forbidden';
 														}?>
 													</td>
 												</tr>
@@ -760,8 +781,8 @@
 															echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 														} elseif(@$minepermit['mpermit_workshop'] == 'rest'){
 															echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-														} elseif(@$minepermit['mpermit_workshop'] == 'forbiden'){
-															echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
+														} elseif(@$minepermit['mpermit_workshop'] == 'forbidden'){
+															echo'<i style="color:Red;" class="fa fa-circle"></i> Forbidden';
 														}?>
 													</td>
 												</tr>
@@ -772,8 +793,8 @@
 															echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 														} elseif(@$minepermit['mpermit_cpp'] == 'rest'){
 															echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-														} elseif(@$minepermit['mpermit_cpp'] == 'forbiden'){
-															echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
+														} elseif(@$minepermit['mpermit_cpp'] == 'forbidden'){
+															echo'<i style="color:Red;" class="fa fa-circle"></i> Forbidden';
 														}?>
 													</td>
 												</tr>
@@ -784,8 +805,8 @@
 															echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 														} elseif(@$minepermit['mpermit_lab'] == 'rest'){
 															echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-														} elseif(@$minepermit['mpermit_lab'] == 'forbiden'){
-															echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
+														} elseif(@$minepermit['mpermit_lab'] == 'forbidden'){
+															echo'<i style="color:Red;" class="fa fa-circle"></i> Forbidden';
 														}?>
 													</td>
 												</tr>
@@ -796,8 +817,8 @@
 															echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 														} elseif(@$minepermit['mpermit_exploration'] == 'rest'){
 															echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-														} elseif(@$minepermit['mpermit_exploration'] == 'forbiden'){
-															echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
+														} elseif(@$minepermit['mpermit_exploration'] == 'forbidden'){
+															echo'<i style="color:Red;" class="fa fa-circle"></i> Forbidden';
 														}?>
 													</td>
 												</tr>
@@ -808,8 +829,8 @@
 															echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 														} elseif(@$minepermit['mpermit_jetty'] == 'rest'){
 															echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-														} elseif(@$minepermit['mpermit_jetty'] == 'forbiden'){
-															echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
+														} elseif(@$minepermit['mpermit_jetty'] == 'forbidden'){
+															echo'<i style="color:Red;" class="fa fa-circle"></i> Forbidden';
 														}?>
 													</td>
 												</tr>
@@ -1070,8 +1091,8 @@
 												echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 											} elseif(@$minepermit_detail['mpermit_office'] == 'rest'){
 												echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-											} elseif(@$minepermit_detail['mpermit_office'] == 'forbiden'){
-												echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
+											} elseif(@$minepermit_detail['mpermit_office'] == 'forbidden'){
+												echo'<i style="color:Red;" class="fa fa-circle"></i> Forbidden';
 											}?>
 										</td>
 									</tr>
@@ -1082,8 +1103,8 @@
 												echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 											} elseif(@$minepermit_detail['mpermit_mine'] == 'rest'){
 												echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-											} elseif(@$minepermit_detail['mpermit_mine'] == 'forbiden'){
-												echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
+											} elseif(@$minepermit_detail['mpermit_mine'] == 'forbidden'){
+												echo'<i style="color:Red;" class="fa fa-circle"></i> Forbidden';
 											}?>
 										</td>
 									</tr>
@@ -1094,8 +1115,8 @@
 												echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 											} elseif(@$minepermit_detail['mpermit_camp'] == 'rest'){
 												echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-											} elseif(@$minepermit_detail['mpermit_camp'] == 'forbiden'){
-												echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
+											} elseif(@$minepermit_detail['mpermit_camp'] == 'forbidden'){
+												echo'<i style="color:Red;" class="fa fa-circle"></i> Forbidden';
 											}?>
 										</td>
 									</tr>
@@ -1106,8 +1127,8 @@
 												echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 											} elseif(@$minepermit_detail['mpermit_workshop'] == 'rest'){
 												echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-											} elseif(@$minepermit_detail['mpermit_workshop'] == 'forbiden'){
-												echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
+											} elseif(@$minepermit_detail['mpermit_workshop'] == 'forbidden'){
+												echo'<i style="color:Red;" class="fa fa-circle"></i> Forbidden';
 											}?>
 										</td>
 									</tr>
@@ -1118,8 +1139,8 @@
 												echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 											} elseif(@$minepermit_detail['mpermit_cpp'] == 'rest'){
 												echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-											} elseif(@$minepermit_detail['mpermit_cpp'] == 'forbiden'){
-												echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
+											} elseif(@$minepermit_detail['mpermit_cpp'] == 'forbidden'){
+												echo'<i style="color:Red;" class="fa fa-circle"></i> Forbidden';
 											}?>
 										</td>
 									</tr>
@@ -1130,8 +1151,8 @@
 												echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 											} elseif(@$minepermit_detail['mpermit_lab'] == 'rest'){
 												echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-											} elseif(@$minepermit_detail['mpermit_lab'] == 'forbiden'){
-												echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
+											} elseif(@$minepermit_detail['mpermit_lab'] == 'forbidden'){
+												echo'<i style="color:Red;" class="fa fa-circle"></i> Forbidden';
 											}?>
 										</td>
 									</tr>
@@ -1142,8 +1163,8 @@
 												echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 											} elseif(@$minepermit_detail['mpermit_exploration'] == 'rest'){
 												echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-											} elseif(@$minepermit_detail['mpermit_exploration'] == 'forbiden'){
-												echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
+											} elseif(@$minepermit_detail['mpermit_exploration'] == 'forbidden'){
+												echo'<i style="color:Red;" class="fa fa-circle"></i> Forbidden';
 											}?>
 										</td>
 									</tr>
@@ -1154,8 +1175,8 @@
 												echo'<i style="color:green;" class="fa fa-circle"></i> Full';
 											} elseif(@$minepermit_detail['mpermit_jetty'] == 'rest'){
 												echo'<i style="color:Yellow;" class="fa fa-circle"></i> Rest';
-											} elseif(@$minepermit_detail['mpermit_jetty'] == 'forbiden'){
-												echo'<i style="color:Red;" class="fa fa-circle"></i> Forbiden';
+											} elseif(@$minepermit_detail['mpermit_jetty'] == 'forbidden'){
+												echo'<i style="color:Red;" class="fa fa-circle"></i> Forbidden';
 											}?>
 										</td>
 									</tr>
@@ -1248,50 +1269,6 @@
 									<td>
 										<a href="home.php?v=muser&act=update&id=<?= $row['user_id']; ?>" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
 									</td>
-								</tr>
-							<?php } ?>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-12 col-lg-12 col-xl-12">
-		<div class="card">
-			<div class="card-header">
-				<h4>Data PIC | <i class="fas fa-list"></i> </h4>
-			</div>
-			<div class="card-body">
-				<div class="table-responsive">
-					<table class="table table-striped table-hover" id="save-stage-accident" style="width:100%;">
-						<thead>
-							<tr>
-								<th>Akses Apps</th>
-								<th>NIK</th>
-								<th>Nama</th>
-								<th>Divisi</th>
-								<th>Perusahaan</th>
-								<th>No. Telp</th>
-								<th>Email</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php while($row  = mysqli_fetch_array($pic)){ ?> 
-								<tr>
-									<td>
-										<?php if($row['user_access'] !='Y'){
-											echo'<span class="badge badge-pill badge-secondary">&nbsp;Nonaktif</span>';
-										} else {
-											echo'<span class="badge badge-pill badge-success">&emsp;Aktif&emsp;</span>';
-										} ?>
-									</td>
-									<td><?= $row['user_nik']; ?></td>
-									<td><a href="home.php?v=muser&act=detail&id=<?= $row['user_id']; ?>" class=""><?= $row['user_name']; ?></a></td>
-									<td><?= $row['divisi_name']; ?></td>
-									<td><?= $row['comp_name']; ?></td>
-									<td><?= $row['user_phone']; ?></td>
-									<td><?= $row['user_email']; ?></td>
 								</tr>
 							<?php } ?>
 						</tbody>

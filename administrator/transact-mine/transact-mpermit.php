@@ -141,7 +141,7 @@
            <option value=""> - Pilih -</option>
            <option value="full">Full</option>
            <option value="rest">Rest</option>
-           <option value="forbiden">Forbiden</option>
+           <option value="forbidden">Forbidden</option>
          </select>
        </div>
 
@@ -151,7 +151,7 @@
          <option value=""> - Pilih -</option>
          <option value="full">Full</option>
          <option value="rest">Rest</option>
-         <option value="forbiden">Forbiden</option>
+         <option value="forbidden">Forbidden</option>
        </select>
      </div>
 
@@ -161,7 +161,7 @@
        <option value=""> - Pilih -</option>
        <option value="full">Full</option>
        <option value="rest">Rest</option>
-       <option value="forbiden">Forbiden</option>
+       <option value="forbidden">Forbidden</option>
      </select>
    </div>
 
@@ -171,7 +171,7 @@
      <option value=""> - Pilih -</option>
      <option value="full">Full</option>
      <option value="rest">Rest</option>
-     <option value="forbiden">Forbiden</option>
+     <option value="forbidden">Forbidden</option>
    </select>
  </div>
 </div>
@@ -183,7 +183,7 @@
    <option value=""> - Pilih -</option>
    <option value="full">Full</option>
    <option value="rest">Rest</option>
-   <option value="forbiden">Forbiden</option>
+   <option value="forbidden">Forbidden</option>
  </select>
 </div>
 
@@ -193,7 +193,7 @@
    <option value=""> - Pilih -</option>
    <option value="full">Full</option>
    <option value="rest">Rest</option>
-   <option value="forbiden">Forbiden</option>
+   <option value="forbidden">Forbidden</option>
  </select>
 </div>
 
@@ -203,7 +203,7 @@
    <option value=""> - Pilih -</option>
    <option value="full">Full</option>
    <option value="rest">Rest</option>
-   <option value="forbiden">Forbiden</option>
+   <option value="forbidden">Forbidden</option>
  </select>
 </div>
 
@@ -213,7 +213,7 @@
    <option value=""> - Pilih -</option>
    <option value="full">Full</option>
    <option value="rest">Rest</option>
-   <option value="forbiden">Forbiden</option>
+   <option value="forbidden">Forbidden</option>
  </select>
 </div>
 </div>
@@ -345,7 +345,7 @@
      <option value="<?= $edit['mpermit_office']?>"><?= $edit['mpermit_office']?></option>
      <option value="full">Full</option>
      <option value="rest">Rest</option>
-     <option value="forbiden">Forbiden</option>
+     <option value="forbidden">Forbidden</option>
    </select>
  </div>
 
@@ -355,7 +355,7 @@
    <option value="<?= $edit['mpermit_mine']?>"><?= $edit['mpermit_mine']?></option>
    <option value="full">Full</option>
    <option value="rest">Rest</option>
-   <option value="forbiden">Forbiden</option>
+   <option value="forbidden">Forbidden</option>
  </select>
 </div>
 
@@ -365,7 +365,7 @@
    <option value="<?= $edit['mpermit_camp']?>"><?= $edit['mpermit_camp']?></option>
    <option value="full">Full</option>
    <option value="rest">Rest</option>
-   <option value="forbiden">Forbiden</option>
+   <option value="forbidden">Forbidden</option>
  </select>
 </div>
 
@@ -375,7 +375,7 @@
    <option value="<?= $edit['mpermit_workshop']?>"><?= $edit['mpermit_workshop']?></option>
    <option value="full">Full</option>
    <option value="rest">Rest</option>
-   <option value="forbiden">Forbiden</option>
+   <option value="forbidden">Forbidden</option>
  </select>
 </div>
 </div>
@@ -387,7 +387,7 @@
    <option value="<?= $edit['mpermit_cpp']?>"><?= $edit['mpermit_cpp']?></option>
    <option value="full">Full</option>
    <option value="rest">Rest</option>
-   <option value="forbiden">Forbiden</option>
+   <option value="forbidden">Forbidden</option>
  </select>
 </div>
 
@@ -397,7 +397,7 @@
    <option value="<?= $edit['mpermit_lab']?>"><?= $edit['mpermit_lab']?></option>
    <option value="full">Full</option>
    <option value="rest">Rest</option>
-   <option value="forbiden">Forbiden</option>
+   <option value="forbidden">Forbidden</option>
  </select>
 </div>
 
@@ -407,7 +407,7 @@
    <option value="<?= $edit['mpermit_exploration']?>"><?= $edit['mpermit_exploration']?></option>
    <option value="full">Full</option>
    <option value="rest">Rest</option>
-   <option value="forbiden">Forbiden</option>
+   <option value="forbidden">Forbidden</option>
  </select>
 </div>
 
@@ -417,7 +417,7 @@
    <option value="<?= $edit['mpermit_jetty']?>"><?= $edit['mpermit_jetty']?></option>
    <option value="full">Full</option>
    <option value="rest">Rest</option>
-   <option value="forbiden">Forbiden</option>
+   <option value="forbidden">Forbidden</option>
  </select>
 </div>
 </div>

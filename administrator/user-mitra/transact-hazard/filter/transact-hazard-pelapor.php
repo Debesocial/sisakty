@@ -27,6 +27,7 @@
 	LEFT JOIN divisi ON divisi.divisi_id = user.user_divisi
 	LEFT JOIN company ON company.comp_id = user.user_comp
 	WHERE user.user_comp = '$comp'  
+	AND user.user_status = 'STAFF'
 	ORDER BY user.user_name ASC ");
 
 #BERDASARKAN STATUS
@@ -562,10 +563,10 @@
 																COUNT(CASE WHEN hazard_status = 'Closed'  THEN 1 END) AS `Closed`,
 																COUNT(CASE WHEN hazard_status = 'Reject'  THEN 1 END) AS `Reject`
 																FROM hazard  
-																where DATE_FORMAT(hazard_date, '%Y-%m-%d') >= '$date1' 
+																WHERE DATE_FORMAT(hazard_date, '%Y-%m-%d') >= '$date1' 
 																AND DATE_FORMAT(hazard_date, '%Y-%m-%d') <= '$date2'
 																AND hazard_user = ".$row['user_id']."
-																and hazard_approve = 'Y'"));
+																AND hazard_approve = 'Y'"));
 																?>
 																<tr>
 																	<td><?= $row['user_name']?></td>

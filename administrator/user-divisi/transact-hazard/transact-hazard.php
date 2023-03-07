@@ -12,7 +12,7 @@ if ($_POST['today'] != NULL) {
   $date2  = date("Y-12-31");
   $date1  = date("Y-01-01");
 } else {
-  $header = 'Hazard Report 30 Hari Terakhir';
+  $header = 'Harmonis 30 Hari Terakhir';
   $date2  = date("Y-m-d");
   $date1  = date('Y-m-d', strtotime('-30 days'));
 }
@@ -51,7 +51,7 @@ if(@$_GET['act'] == 'detail'){
     <div class="card author-box">
       <div class="card-body">
         <div class="author-box-center">
-          <img alt="image" src="../../assets/super/img/users/user-1.png" class="rounded-circle author-box-picture">
+          <img alt="image" src="../../../assets/super/img/users/user-1.png" class="rounded-circle author-box-picture">
           <div class="author-box-name"> <a href="#"> <?= $report['user_name']; ?> </a> </div>
           <div class="author-box-job"> <?= $report['user_status']; ?> </div> </div>
           <hr>
@@ -91,12 +91,12 @@ if(@$_GET['act'] == 'detail'){
                 <center>
                   <a href="" data-toggle="modal" data-target=".bd-example-modal-lg">
                     <img class="zoom border rounded" style=" border: 1px solid #ddd;border-radius: 4px;padding: 5px;"
-                    src="<?= '../../assets/hazard/thumbnail/'.$report['hazard_photo'];?>" alt="image" class="imaged img-fluid" width="50%">
+                    src="<?= '../../../assets/hazard/thumbnail/'.$report['hazard_photo'];?>" alt="image" class="imaged img-fluid" width="50%">
                   </a>
                 </center>
               </figure>
             <?php } else { ?>
-              <center><img src="../../assets/hazard/noimage.jpg" alt="image" class="imaged img-fluid" width="80%"></center>
+              <center><img src="../../../assets/hazard/noimage.jpg" alt="image" class="imaged img-fluid" width="80%"></center>
             <?php } ?>
             <tbody>
               <tr><th>ID Hazard</th><td> <?= 'HZ'.str_pad($report['hazard_id'],5,"0",STR_PAD_LEFT);?></td> </tr> 
@@ -139,7 +139,7 @@ if(@$_GET['act'] == 'detail'){
                     <div class="tracking-date"><?= $row['hazard_status_date']?></div>
                     <div class="tracking-content"><?= $row['hazard_status_name']?> <span> <?= $row['hazard_status_desc']?> </span>
                       <?php if ($row['hazard_status_photo'] != ''){ ?><br>
-                      <img class="zoom border rounded" style=" border: 1px solid #ddd;border-radius: 4px;padding: 5px;" src="<?= '../../assets/hazard/thumbnail/'.$row['hazard_status_photo']?>" width="50%"> <?php } ?> 
+                      <img class="zoom border rounded" style=" border: 1px solid #ddd;border-radius: 4px;padding: 5px;" src="<?= '../../../assets/hazard/thumbnail/'.$row['hazard_status_photo']?>" width="50%"> <?php } ?> 
                     </div>
                   </div>
                 <?php } ?>
@@ -337,7 +337,7 @@ if(@$_GET['act'] == 'detail'){
             <div class="col-md-12 col-lg-12 col-xl-12">
               <div class="card">
                 <div class="card-header">
-                  <h4>Hazard Report | <i class="fas fa-list"></i></h4>   
+                  <h4>Harmonis | <i class="fas fa-list"></i></h4>   
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -627,7 +627,7 @@ if(@$_GET['act'] == 'detail'){
                   <i class="fas fa-download"></i> Export Grafik
                 </button><br><br>
                 <div  id="grafiks" >
-                  <script type="text/javascript" src="../../assets/js/chartjs/Chart.js"></script>
+                  <script type="text/javascript" src="../../../assets/js/chartjs/Chart.js"></script>
                   <div class="row ">
                     <div class="col-4 col-md-4 col-lg-4">
                       <div class="card ">
@@ -994,7 +994,7 @@ if(@$_GET['act'] == 'detail'){
                                 e.preventDefault();
                                 var formData = new FormData(this);
                                 var id = <?php echo $_GET['id'];?>;
-                                document.getElementById("demo").innerHTML = "<center>Please Wait...<br><img src='../../assets/super/img/loading.gif' width='100'></center>";
+                                document.getElementById("demo").innerHTML = "<center>Please Wait...<br><img src='../../../assets/super/img/loading.gif' width='100'></center>";
                                 $.ajax({
                                   url  : "action/action.php?action=hazard&id=" + id,
                                   type : "POST",
